@@ -10,6 +10,7 @@ import BlogSection from '../components/BlogSection';
 import ProjectGallery from '../components/ProjectGallery';
 import StickyCTA from '../components/StickyCTA';
 import Alramadi from '../assets/Alramadi.png';
+import WhoWeAre from '../assets/who we are.png';
 
 const HomePage = () => {
   const { t } = useTranslation();
@@ -106,8 +107,8 @@ const HomePage = () => {
             <AnimatedSection animation="slide-in-right" delay={200}>
               <div className="relative image-hover-zoom rounded-lg overflow-hidden shadow-xl">
                 <img 
-                  src="https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?auto=compress&cs=tinysrgb&w=800"
-                  alt="Construction team at work"
+                  src={WhoWeAre}
+                  alt="Who We Are - Jegr Jalal Team at Work"
                   className="w-full h-full object-cover"
                 />
               </div>
