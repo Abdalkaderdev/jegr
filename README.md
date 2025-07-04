@@ -8,6 +8,23 @@ The website features a professional design with construction-themed colors (oran
 
 **Company Tagline:** "Strong. Elegant. Jegr Jalal."
 
+---
+
+## Recent Updates (2025)
+
+- **Hero Section Slider:** The homepage hero is now a Swiper slider with two slides:
+  - **Slide 1:** Alramadi.png background, company tagline, and CTA to Services.
+  - **Slide 2:** IMG_6001.png background, projects highlight, and CTA to Projects.
+- **About Page Hero:** Uses IMG_5985.jpeg as the hero background, with a dark overlay and translation support for the title and subtitle.
+- **Our Services Section:** Now a static grid of 6 cards, each with a themed icon, white background, and company color palette.
+- **Why Do Clients Choose Us Section:** Added a new section with 5 cards, each featuring an icon and a key differentiator, styled for consistency and clarity.
+- **Card Sizing:** All cards in the 'Why Do Clients Choose Us?' section have a consistent min-height and vertical alignment for a polished look.
+- **Swiper.js Integration:** Swiper is now used for the homepage hero slider. See package.json for version.
+- **Color & Typography:** All new sections and cards use the app's CSS variables and Tailwind system for color and font consistency.
+- **Translation:** Hero and About page text now use translation keys for full i18n support.
+
+---
+
 ## Tools & Technologies Used
 
 - **React 18.3.1** - Frontend framework
@@ -16,6 +33,7 @@ The website features a professional design with construction-themed colors (oran
 - **Tailwind CSS 3.4.1** - Utility-first CSS framework
 - **React Router DOM 6.20.1** - Client-side routing
 - **Lucide React 0.344.0** - Icon library
+- **Swiper 11.1.0** - Hero slider/carousel
 - **PostCSS & Autoprefixer** - CSS processing
 - **ESLint** - Code linting and quality
 
@@ -57,18 +75,20 @@ Configuration Files:
 ## Pages
 
 ### 1. Homepage (`/`)
-- **Hero Section**: Full-screen banner with company tagline and CTA
-- **About Section**: Brief company introduction with key values
-- **Services Preview**: Grid of 6 main services with icons
-- **Featured Projects**: Showcase of 3 major projects
-- **Contact Form**: Quick contact form with company highlights
+- **Hero Section:** Swiper slider with two slides (Services & Projects), each with its own background image, text, and CTA.
+- **About Section:** Brief company introduction with key values
+- **Our Services:** Grid of 6 main services with icons and white cards
+- **Why Do Clients Choose Us:** 5-card grid with icons and differentiators
+- **Featured Projects:** Showcase of 3 major projects
+- **Contact Form:** Quick contact form with company highlights
 
 ### 2. About Page (`/about`)
-- **Company Story**: Detailed history and mission
-- **Core Values**: 4 key principles (Strength, Elegance, Precision, Trust)
-- **Timeline**: Company milestones from 2015-2024
-- **FAQ Section**: Common questions about services
-- **Contact CTA**: Call-to-action with contact information
+- **Hero Section:** Custom image (IMG_5985.jpeg) with overlay and translated text
+- **Company Story:** Detailed history and mission
+- **Core Values:** 4 key principles (Strength, Elegance, Precision, Trust)
+- **Timeline:** Company milestones from 2015-2024
+- **FAQ Section:** Common questions about services
+- **Contact CTA:** Call-to-action with contact information
 
 ### 3. Services Page (`/services`)
 - **Service Details**: 6 comprehensive service descriptions
@@ -184,7 +204,45 @@ The project uses Tailwind CSS with custom configurations:
 
 ## How to Edit the Website
 
-### 1. Changing Text Content
+### 1. Changing Hero Images & Slider
+```typescript
+// In HomePage.tsx, update the Swiper slides:
+import Alramadi from '../assets/Alramadi.png';
+import HeroProjectImg from '../assets/IMG_6001.png';
+// ...
+<Swiper>
+  <SwiperSlide>
+    {/* Slide 1: Services */}
+    style={{ backgroundImage: `url(${Alramadi})` }}
+    // ...
+  </SwiperSlide>
+  <SwiperSlide>
+    {/* Slide 2: Projects */}
+    style={{ backgroundImage: `url(${HeroProjectImg})` }}
+    // ...
+  </SwiperSlide>
+</Swiper>
+```
+
+### 2. Changing About Page Hero
+```typescript
+// In AboutPage.tsx:
+import heroImg from '../assets/IMG_5985.jpeg';
+<section style={{ backgroundImage: `url(${heroImg})` }}>
+  {/* ... */}
+</section>
+```
+
+### 3. Editing Services & Why Choose Us Sections
+```typescript
+// In HomePage.tsx, update the arrays or card content for services and differentiators.
+// Each card uses a Lucide icon and theme colors.
+```
+
+### 4. Adding New Slides or Cards
+- Duplicate a SwiperSlide or card block and update the image, text, and CTA as needed.
+
+### 5. Changing Text Content
 ```typescript
 // Example: Update hero title in HomePage.tsx
 <h1 className="hero-text text-5xl md:text-7xl font-bold mb-6 leading-tight">
@@ -192,7 +250,7 @@ The project uses Tailwind CSS with custom configurations:
 </h1>
 ```
 
-### 2. Adding New Services
+### 6. Adding New Services
 ```typescript
 // In HomePage.tsx or ServicesPage.tsx, add to services array:
 const services = [
@@ -206,7 +264,7 @@ const services = [
 ];
 ```
 
-### 3. Adding New Projects
+### 7. Adding New Projects
 ```typescript
 // In ProjectsPage.tsx, add to projects array:
 const projects = [
@@ -225,7 +283,7 @@ const projects = [
 ];
 ```
 
-### 4. Updating Images
+### 8. Updating Images
 Replace image URLs in the respective components:
 ```typescript
 // Example: Update hero background
@@ -234,13 +292,13 @@ style={{
 }}
 ```
 
-### 5. Modifying Contact Information
+### 9. Modifying Contact Information
 Update contact details in:
 - `ContactPage.tsx` - Main contact page
 - `Footer.tsx` - Footer contact info
 - `AboutPage.tsx` - CTA section
 
-### 6. Customizing Colors
+### 10. Customizing Colors
 Modify the CSS variables in `src/index.css`:
 ```css
 :root {

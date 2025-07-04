@@ -4,6 +4,9 @@ import AnimatedSection from '../components/ui/AnimatedSection';
 import { useTranslation } from 'react-i18next';
 import TeamSection from '../components/TeamSection';
 import FAQSection from '../components/FAQSection';
+import { FaLightbulb, FaIndustry, FaBuilding, FaAward } from 'react-icons/fa';
+import interchangeImg from '../assets/Presentation - Google Chrome 7_4_2025 8_07_34 PM.png';
+import heroImg from '../assets/IMG_5985.jpeg';
 
 const AboutPage = () => {
   const { t } = useTranslation();
@@ -33,29 +36,24 @@ const AboutPage = () => {
 
   const timeline = [
     {
-      year: '2015',
-      title: 'Company Founded',
-      description: 'Jegr Jalal Company established with a vision to transform Iraqi infrastructure.'
-    },
-    {
-      year: '2017',
-      title: 'First Major Project',
-      description: 'Completed our first large-scale road development project in Tikrit.'
+      year: '2007',
+      title: 'Launch into the lighting and electrical installations business',
+      description: 'Jegr Jalal began its journey, focusing on providing high-quality lighting and electrical installation services for a variety of projects across Iraq.'
     },
     {
       year: '2019',
-      title: 'Service Expansion',
-      description: 'Added landscaping and decorative concrete services to our portfolio.'
+      title: 'Entry into the field of manufacturing decorative and modern lighting poles',
+      description: 'We expanded our expertise by establishing manufacturing capabilities for decorative and modern lighting poles, setting new standards in design and durability.'
     },
     {
-      year: '2021',
-      title: 'Technology Integration',
-      description: 'Incorporated modern lighting and security solutions into our offerings.'
+      year: '2022',
+      title: 'Adding general contracting and real estate investment activities',
+      description: 'Our growth continued as we diversified into general contracting and real estate investment, broadening our impact on the construction industry.'
     },
     {
       year: '2024',
-      title: 'Regional Leadership',
-      description: 'Became one of Iraq\'s leading construction and infrastructure companies.'
+      title: 'Recognized as a development and consulting company for government projects',
+      description: 'Jegr Jalal was recognized as a trusted development and consulting partner for major government projects, reflecting our commitment to excellence and innovation.'
     }
   ];
 
@@ -88,13 +86,14 @@ const AboutPage = () => {
       <section 
         className="relative py-24 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?auto=compress&cs=tinysrgb&w=1600)'
+          backgroundImage: `url(${heroImg})`
         }}
       >
-        <div className="container-custom text-center">
+        <div className="absolute inset-0 bg-black/70" style={{background: 'linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.5))'}}></div>
+        <div className="container-custom text-center relative z-10">
           <AnimatedSection animation="fade-in">
-            <h1 className="text-4xl font-bold mb-4 text-orange-600">{t('about.title')}</h1>
-            <p className="text-lg font-bold text-orange-500 mb-6 tracking-widest">High Quality. Guarantee. Excellent Local Manufacturer</p>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white drop-shadow-lg">{t('aboutPage.title')}</h1>
+            <p className="text-xl md:text-2xl font-medium text-orange-200 mb-6 drop-shadow-lg">{t('homepage.heroSubtitle')}</p>
           </AnimatedSection>
         </div>
       </section>
@@ -118,9 +117,9 @@ const AboutPage = () => {
             
             <AnimatedSection animation="slide-in-right" delay={200}>
               <div className="relative image-hover-zoom rounded-lg overflow-hidden shadow-xl">
-                <img 
-                  src="https://images.pexels.com/photos/2539462/pexels-photo-2539462.jpeg?auto=compress&cs=tinysrgb&w=800"
-                  alt={t('aboutPage.imageAlt')}
+                <img
+                  src={interchangeImg}
+                  alt="Aerial view of a highway interchange at night"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -164,87 +163,112 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Timeline Section */}
+      {/* Visual Timeline Section */}
       <section className="py-20 bg-white">
         <div className="container-custom">
-          <AnimatedSection animation="fade-in">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Journey</h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Key milestones in our company's growth and development.
-              </p>
-            </div>
-          </AnimatedSection>
-
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Journey</h2>
+            <p className="text-lg text-gray-700 max-w-2xl mx-auto">
+              Explore the milestones that shaped Jegr Jalal’s story.
+            </p>
+          </div>
           <div className="relative">
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-orange-200"></div>
-            
-            {timeline.map((item, index) => (
-              <AnimatedSection 
-                key={index} 
-                animation="fade-in" 
-                delay={index * 150}
-              >
-                <div className={`timeline-item relative flex items-center mb-12 ${
-                  index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
-                }`}>
-                  <div className={`w-1/2 ${index % 2 === 0 ? 'pr-8 text-right' : 'pl-8 text-left'}`}>
-                    <div className="bg-white p-6 rounded-lg shadow-lg border border-gray-100 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
-                      <div className="text-2xl font-bold text-orange-600 mb-2 group-hover:scale-110 transition-transform duration-300">{item.year}</div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-orange-600 transition-colors duration-300">{item.title}</h3>
-                      <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">{item.description}</p>
+            {/* Central vertical line */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-orange-200 z-0"></div>
+            <div className="space-y-16">
+              {[
+                {
+                  year: '2007',
+                  title: 'Lighting & Electrical Launch',
+                  description: 'Jegr Jalal began its journey, focusing on high-quality lighting and electrical installation services.',
+                  icon: <FaLightbulb className="text-orange-500 w-8 h-8" />,
+                },
+                {
+                  year: '2019',
+                  title: 'Manufacturing Expansion',
+                  description: 'Established manufacturing for decorative and modern lighting poles, setting new standards in design.',
+                  icon: <FaIndustry className="text-orange-500 w-8 h-8" />,
+                },
+                {
+                  year: '2022',
+                  title: 'General Contracting & Real Estate',
+                  description: 'Diversified into general contracting and real estate investment, broadening our industry impact.',
+                  icon: <FaBuilding className="text-orange-500 w-8 h-8" />,
+                },
+                {
+                  year: '2024',
+                  title: 'Government Consulting Recognition',
+                  description: 'Recognized as a trusted development and consulting partner for major government projects.',
+                  icon: <FaAward className="text-orange-500 w-8 h-8" />,
+                },
+              ].map((item, idx) => (
+                <div
+                  key={item.year}
+                  className={`
+                    relative flex items-center mb-16 z-10
+                    ${idx % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}
+                    group
+                  `}
+                >
+                  {/* Content box */}
+                  <div className={`w-1/2 flex justify-center`}>
+                    <div className={`bg-white p-8 rounded-lg shadow-lg border border-gray-100 max-w-md w-full
+                      ${idx % 2 === 0 ? 'animate-fade-in-left' : 'animate-fade-in-right'} animate-scale-in
+                    `}>
+                      <div className="flex items-center mb-2 justify-center">
+                        <span className="animate-fade-in-stagger" style={{ '--delay': '0ms' } as React.CSSProperties}>{item.icon}</span>
+                        <span className="ml-3 text-2xl font-bold text-orange-600 animate-fade-in-stagger" style={{ '--delay': '100ms' } as React.CSSProperties}>{item.year}</span>
+                      </div>
+                      <h3 className="text-xl font-bold text-gray-900 mb-2 text-center animate-fade-in-stagger" style={{ '--delay': '200ms' } as React.CSSProperties}>{item.title}</h3>
+                      <p className="text-gray-700 text-center animate-fade-in-stagger" style={{ '--delay': '300ms' } as React.CSSProperties}>{item.description}</p>
                     </div>
                   </div>
-                  
-                  <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-orange-600 rounded-full border-4 border-white shadow-lg hover:scale-125 transition-transform duration-300"></div>
-                  
-                  <div className="w-1/2"></div>
+                  {/* Timeline dot with pulse animation */}
+                  <div className="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-orange-500 rounded-full border-4 border-white shadow-lg z-20 flex items-center justify-center animate-pulse-dot">
+                    {item.icon}
+                  </div>
+                  {/* Spacer for alignment on desktop */}
+                  <div className="w-1/2 max-md:hidden"></div>
+                  {/* Mobile view: always show below the dot */}
+                  <div className="w-full md:hidden mt-8">
+                    <div className="bg-white p-8 rounded-lg shadow-lg border border-gray-100 max-w-md w-full mx-auto animate-fade-in-up animate-scale-in">
+                      <div className="flex items-center mb-2 justify-center">
+                        <span className="animate-fade-in-stagger" style={{ '--delay': '0ms' } as React.CSSProperties}>{item.icon}</span>
+                        <span className="ml-3 text-2xl font-bold text-orange-600 animate-fade-in-stagger" style={{ '--delay': '100ms' } as React.CSSProperties}>{item.year}</span>
+                      </div>
+                      <h3 className="text-xl font-bold text-gray-900 mb-2 text-center animate-fade-in-stagger" style={{ '--delay': '200ms' } as React.CSSProperties}>{item.title}</h3>
+                      <p className="text-gray-700 text-center animate-fade-in-stagger" style={{ '--delay': '300ms' } as React.CSSProperties}>{item.description}</p>
+                    </div>
+                  </div>
                 </div>
-              </AnimatedSection>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       <FAQSection />
 
-      {/* CTA Section */}
+      {/* Stats Section */}
       <section className="py-20 bg-orange-600">
-        <div className="container-custom text-center">
-          <AnimatedSection animation="fade-in">
-            <h2 className="text-4xl font-bold text-white mb-6">
-              Ready to Work With Us?
-            </h2>
-            <p className="text-xl text-orange-100 mb-8 max-w-2xl mx-auto">
-              Let's discuss your next construction or infrastructure project. 
-              Our team is ready to bring your vision to life.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <div className="flex items-center justify-center space-x-2 text-white group">
-                <Phone className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
-                <span className="group-hover:text-orange-200 transition-colors duration-300">+964 XXX XXX XXXX</span>
-              </div>
-              <div className="flex items-center justify-center space-x-2 text-white group">
-                <Mail className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
-                <span className="group-hover:text-orange-200 transition-colors duration-300">info@jegrjalal.com</span>
-              </div>
-              <div className="flex items-center justify-center space-x-2 text-white group">
-                <MapPin className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
-                <span className="group-hover:text-orange-200 transition-colors duration-300">Baghdad, Iraq</span>
-              </div>
+        <div className="container-custom">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center text-white">
+            <div className="group">
+              <div className="stats-counter mb-2 group-hover:scale-110 transition-transform duration-300">322</div>
+              <div className="text-orange-100 group-hover:text-white transition-colors duration-300">Projects Completed</div>
             </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* Contact & Location Section */}
-      <section className="py-12 bg-gray-50">
-        <div className="container-custom text-center">
-          <h2 className="text-3xl font-bold text-orange-600 mb-4">Contact & Location</h2>
-          <div className="flex flex-col items-center space-y-2 text-lg text-gray-700">
-            <span><strong>Phone:</strong> <a href="tel:07715554224" className="underline hover:text-orange-500">0771 555 4224</a>, <a href="tel:07505554243" className="underline hover:text-orange-500">0750 555 4243</a></span>
-            <span><strong>Location:</strong> IRAQ- KRG - ERBIL 100M ROAD - OPPOSITE TO ERBIL INTERNATIONAL AIRPORT</span>
-            <span><strong>Email:</strong> <a href="mailto:CONTACT@JEGRJALALCOMPANY.COM" className="underline hover:text-orange-500">CONTACT@JEGRJALALCOMPANY.COM</a></span>
+            <div className="group">
+              <div className="stats-counter mb-2 group-hover:scale-110 transition-transform duration-300">17</div>
+              <div className="text-orange-100 group-hover:text-white transition-colors duration-300">Iraqi Cities</div>
+            </div>
+            <div className="group">
+              <div className="stats-counter mb-2 group-hover:scale-110 transition-transform duration-300">64</div>
+              <div className="text-orange-100 group-hover:text-white transition-colors duration-300">Team Members</div>
+            </div>
+            <div className="group">
+              <div className="stats-counter mb-2 group-hover:scale-110 transition-transform duration-300">99%</div>
+              <div className="text-orange-100 group-hover:text-white transition-colors duration-300">Client Satisfaction</div>
+            </div>
           </div>
         </div>
       </section>

@@ -17,8 +17,8 @@ const Card: React.FC<CardProps> = ({
 }) => {
   const variantClasses = {
     base: 'card-base bg-gradient-theme p-6',
-    service: 'card-service bg-gradient-theme',
-    project: 'card-project bg-gradient-theme',
+    service: 'card-service bg-white border border-gray-100 shadow-md',
+    project: 'card-project bg-white border border-gray-100 shadow-md',
     testimonial: 'card-testimonial bg-gradient-theme'
   };
 
@@ -58,16 +58,39 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
 }) => {
   return (
     <Card variant="service" className={`group ${className}`}>
-      <div className="flex items-center justify-center w-12 h-12 bg-orange-100 rounded-lg mb-4 group-hover:bg-orange-200 group-hover:scale-110 transition-all duration-300">
+      <div
+        className="flex items-center justify-center w-12 h-12 rounded-lg mb-4 group-hover:scale-110 transition-all duration-300"
+        style={{
+          backgroundColor: 'var(--primary-orange-light)',
+          color: 'var(--primary-orange)',
+        }}
+      >
         {icon}
       </div>
-      <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-orange-600 transition-colors duration-300">{title}</h3>
-      <p className="text-gray-600 leading-relaxed mb-4 group-hover:text-gray-700 transition-colors duration-300">{description}</p>
+      <h3
+        className="text-xl font-semibold mb-3 group-hover:text-gradient transition-colors duration-300"
+        style={{ color: 'var(--neutral-gray-900)' }}
+      >
+        {title}
+      </h3>
+      <p
+        className="leading-relaxed mb-4 transition-colors duration-300"
+        style={{ color: 'var(--neutral-gray-600)' }}
+      >
+        {description}
+      </p>
       {features && (
         <ul className="space-y-2">
           {features.map((feature, index) => (
-            <li key={index} className="flex items-center text-sm text-gray-600 group-hover:text-gray-700 transition-colors duration-300">
-              <div className="w-1.5 h-1.5 bg-orange-600 rounded-full mr-2 group-hover:scale-125 transition-transform duration-300"></div>
+            <li
+              key={index}
+              className="flex items-center text-sm transition-colors duration-300"
+              style={{ color: 'var(--neutral-gray-600)' }}
+            >
+              <div
+                className="w-1.5 h-1.5 rounded-full mr-2 transition-transform duration-300"
+                style={{ backgroundColor: 'var(--primary-orange)' }}
+              ></div>
               {feature}
             </li>
           ))}
@@ -99,48 +122,44 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   onClick
 }) => {
   return (
-    <Card variant="project" className={`project-card group ${className}`} onClick={onClick}>
-      <div className="relative overflow-hidden">
-        <img 
-          src={image}
-          alt={title}
-          className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
-        />
-        <div className="project-overlay"></div>
-        {category && (
-          <div className="absolute top-4 right-4 bg-orange-600 text-white px-3 py-1 rounded-full text-sm font-medium transform group-hover:scale-105 transition-transform duration-300">
-            {category}
-          </div>
-        )}
-        <div className="project-details">
-          <button className="w-full bg-white text-orange-600 py-2 px-4 rounded-lg font-semibold flex items-center justify-center space-x-2 hover:bg-orange-50 transition-colors duration-200 transform hover:scale-105">
-            <span>View Details</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
+    <Card variant="service" className={`group ${className}`} onClick={onClick}>
+      <div
+        className="flex items-center justify-center w-12 h-12 rounded-lg mb-4 group-hover:scale-110 transition-all duration-300 mx-auto"
+        style={{
+          backgroundColor: 'var(--primary-orange-light)',
+          color: 'var(--primary-orange)',
+        }}
+      >
+        <img src={image} alt={title} className="w-8 h-8 object-contain" />
+      </div>
+      <h3
+        className="text-xl font-semibold mb-3 group-hover:text-gradient transition-colors duration-300 text-center"
+        style={{ color: 'var(--neutral-gray-900)' }}
+      >
+        {title}
+      </h3>
+      <p
+        className="leading-relaxed mb-4 transition-colors duration-300 text-center"
+        style={{ color: 'var(--neutral-gray-600)' }}
+      >
+        {description}
+      </p>
+      {(location || duration) && (
+        <div className="flex flex-wrap gap-4 text-xs text-gray-400 mt-2 justify-center">
+          {location && (
+            <div className="flex items-center group-hover:text-gray-600 transition-colors duration-300">
+              <div className="w-1 h-1 bg-orange-600 rounded-full mr-2 group-hover:scale-125 transition-transform duration-300"></div>
+              {location}
+            </div>
+          )}
+          {duration && (
+            <div className="flex items-center group-hover:text-gray-600 transition-colors duration-300">
+              <div className="w-1 h-1 bg-orange-600 rounded-full mr-2 group-hover:scale-125 transition-transform duration-300"></div>
+              {duration}
+            </div>
+          )}
         </div>
-      </div>
-      
-      <div className="p-6">
-        <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-orange-600 group-hover:-translate-y-1 transition-all duration-300">{title}</h3>
-        <p className="text-gray-600 leading-relaxed mb-4 group-hover:text-gray-700 transition-colors duration-300">{description}</p>
-        
-        {(location || duration) && (
-          <div className="flex flex-wrap gap-4 text-sm text-gray-500 mb-4">
-            {location && (
-              <div className="flex items-center group-hover:text-gray-600 transition-colors duration-300">
-                <div className="w-1 h-1 bg-orange-600 rounded-full mr-2 group-hover:scale-125 transition-transform duration-300"></div>
-                {location}
-              </div>
-            )}
-            {duration && (
-              <div className="flex items-center group-hover:text-gray-600 transition-colors duration-300">
-                <div className="w-1 h-1 bg-orange-600 rounded-full mr-2 group-hover:scale-125 transition-transform duration-300"></div>
-                {duration}
-              </div>
-            )}
-          </div>
-        )}
-      </div>
+      )}
     </Card>
   );
 };

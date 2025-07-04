@@ -85,13 +85,15 @@ html {
 }
 
 .card-service {
-  @apply card-base p-6;
-  @apply hover:border-orange-200;
+  @apply p-6 bg-white border border-gray-100 shadow-md rounded-xl;
+  @apply hover:border-orange-200 hover:shadow-xl hover:scale-105 hover:-translate-y-1;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card-project {
-  @apply card-base overflow-hidden;
-  @apply hover:border-orange-200;
+  @apply p-6 bg-white border border-gray-100 shadow-md rounded-xl overflow-hidden;
+  @apply hover:border-orange-200 hover:shadow-xl hover:scale-105 hover:-translate-y-1;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card-testimonial {
@@ -459,6 +461,15 @@ html {
   @apply bg-orange-500;
 }
 
+/* Hide scrollbar utility */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
 /* Mobile Menu Animation */
 .mobile-menu-enter {
   opacity: 0;
@@ -563,4 +574,27 @@ html {
   .no-print {
     display: none !important;
   }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(251, 146, 60, 0.7); }
+  70% { box-shadow: 0 0 0 12px rgba(251, 146, 60, 0); }
+}
+.animate-pulse-dot {
+  animation: pulse-dot 1.5s infinite;
+}
+@keyframes scale-in {
+  0% { transform: scale(0.85); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.animate-scale-in {
+  animation: scale-in 0.6s cubic-bezier(0.4,0,0.2,1) both;
+}
+@keyframes fade-in-stagger {
+  from { opacity: 0; transform: translateY(20px);}
+  to { opacity: 1; transform: none; }
+}
+.animate-fade-in-stagger {
+  animation: fade-in-stagger 0.7s both;
+  animation-delay: var(--delay, 0ms);
 }

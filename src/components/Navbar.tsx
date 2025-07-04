@@ -4,7 +4,7 @@ import { Menu, X, Hammer } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import logo from '../assets/IMG_9929.png';
-import servicesCategories from '../../api/servicesCategories.json';
+import servicesCategories from "../data/servicesCategories.json";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -82,32 +82,35 @@ const Navbar = () => {
                   {/* Dropdown */}
                   <div className="absolute left-0 mt-2 w-56 bg-white rounded-lg shadow-lg opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity z-50">
                     <ul className="py-2">
-                      {Object.entries(servicesCategories).map(([cat, subs]) => (
-                        <li
-                          key={cat}
-                          className="relative group/category"
-                          onMouseEnter={() => setHoveredCategory(cat)}
-                          onMouseLeave={() => setHoveredCategory(null)}
-                        >
-                          <Link to={`/services?category=${encodeURIComponent(cat)}`} className="block px-4 py-2 text-gray-800 font-semibold hover:bg-orange-50 hover:text-orange-600 transition-colors">
-                            {cat}
-                          </Link>
-                          {/* Submenu */}
-                          {hoveredCategory === cat && (
-                            <div className="absolute right-full top-0 mr-2 w-56 bg-white rounded-lg shadow-lg z-50">
-                              <ul className="py-2">
-                                {(subs as string[]).map(sub => (
-                                  <li key={sub}>
-                                    <Link to={`/services?category=${encodeURIComponent(sub)}`} className="block px-4 py-2 text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors">
-                                      {sub}
-                                    </Link>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          )}
-                        </li>
-                      ))}
+                      {Object.entries(servicesCategories).map(([cat, catData]) => {
+                        const subcategories = (catData as { description: string; subcategories: Record<string, string> }).subcategories;
+                        return (
+                          <li
+                            key={cat}
+                            className="relative group/category"
+                            onMouseEnter={() => setHoveredCategory(cat)}
+                            onMouseLeave={() => setHoveredCategory(null)}
+                          >
+                            <Link to={`/services?category=${encodeURIComponent(cat)}`} className="block px-4 py-2 text-gray-800 font-semibold hover:bg-orange-50 hover:text-orange-600 transition-colors">
+                              {cat}
+                            </Link>
+                            {/* Submenu */}
+                            {hoveredCategory === cat && (
+                              <div className="absolute right-full top-0 mr-2 w-56 bg-white rounded-lg shadow-lg z-50">
+                                <ul className="py-2">
+                                  {Object.keys(subcategories).map(sub => (
+                                    <li key={sub}>
+                                      <Link to={`/services?subcategory=${encodeURIComponent(sub)}`} className="block px-4 py-2 text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors">
+                                        {sub}
+                                      </Link>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
+                          </li>
+                        );
+                      })}
                     </ul>
                   </div>
                 </motion.div>

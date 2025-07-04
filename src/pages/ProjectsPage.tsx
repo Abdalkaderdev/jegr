@@ -1,46 +1,69 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { ArrowRight, Filter, MapPin, Calendar, Users } from 'lucide-react';
 import { ProjectCard } from '../components/ui/Card';
 import Button from '../components/ui/Button';
+import { Link } from 'react-router-dom';
 import AnimatedSection from '../components/ui/AnimatedSection';
 import { useTranslation } from 'react-i18next';
-import ProjectDetailsModal from '../components/ProjectDetailsModal';
+import empireImg from '../assets/empire.png';
+import ferdawsImg from '../assets/ferdaws.png';
+import futreImg from '../assets/futre.png';
+import frenchImg from '../assets/french.png';
+import parkImg from '../assets/park.png';
+import zaitonPlusImg from '../assets/zaiton plus.png';
+import anbarImg from '../assets/anbar.png';
+import northImg from '../assets/north.png';
 
 const ProjectsPage = () => {
   const { t } = useTranslation();
-  const [selectedFilter, setSelectedFilter] = useState('All');
-  const [projects, setProjects] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
-  const [modalOpen, setModalOpen] = useState(false);
-  const [selectedProject, setSelectedProject] = useState<any>(null);
   const [search, setSearch] = useState('');
-  const [category, setCategory] = useState('All');
 
-  const filters = ['All', 'Road', 'Lighting', 'Landscape', 'Concrete', 'Security'];
+  const projects = [
+    {
+      image: empireImg,
+      title: 'Empire World',
+      location: 'Erbil, Kurdistan - Iraq',
+    },
+    {
+      image: ferdawsImg,
+      title: 'Ferdaws City',
+      location: 'Erbil, Kurdistan - Iraq',
+    },
+    {
+      image: futreImg,
+      title: 'Future City',
+      location: 'Erbil, Kurdistan - Iraq',
+    },
+    {
+      image: frenchImg,
+      title: 'French Village',
+      location: 'Duhok, Kurdistan - Iraq',
+    },
+    {
+      image: parkImg,
+      title: 'Park Sami Abdulrahman',
+      location: 'Erbil, Kurdistan - Iraq',
+    },
+    {
+      image: zaitonPlusImg,
+      title: 'Zaiton Plus',
+      location: 'Erbil, Kurdistan - Iraq',
+    },
+    {
+      image: anbarImg,
+      title: 'Anbar-Qaaim',
+      location: 'Anbar, Iraq',
+    },
+    {
+      image: northImg,
+      title: 'North Entrance Ramadi',
+      location: 'Ramadi, Iraq',
+    },
+  ];
 
-  useEffect(() => {
-    setLoading(true);
-    fetch('/api/projects')
-      .then((res) => res.json())
-      .then((data) => {
-        setProjects(data);
-        setLoading(false);
-      })
-      .catch(() => {
-        setError('Failed to load projects');
-        setLoading(false);
-      });
-  }, []);
-
-  // Generate unique categories from projects data
-  const categories = ['All', ...Array.from(new Set(projects.map((p: any) => p.category).filter(Boolean)))];
-
-  // Filter projects by search and category
-  const filteredProjects = projects.filter((project: any) =>
-    (category === 'All' || project.category === category) &&
-    (project.name.toLowerCase().includes(search.toLowerCase()) ||
-     project.description.toLowerCase().includes(search.toLowerCase()))
+  const filteredProjects = projects.filter((project) =>
+    project.title.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
@@ -75,105 +98,38 @@ const ProjectsPage = () => {
             className="form-input w-full md:w-1/3"
             aria-label="Search projects"
           />
-          <select
-            value={category}
-            onChange={e => setCategory(e.target.value)}
-            className="form-input w-full md:w-1/4"
-            aria-label="Filter by category"
-          >
-            {categories.map((cat) => (
-              <option key={cat} value={cat}>{cat}</option>
-            ))}
-          </select>
         </div>
       </section>
 
       {/* Projects Grid */}
       <section className="py-20 bg-white">
         <div className="container-custom">
-          {loading ? (
-            <div className="text-center text-gray-500 py-8">Loading...</div>
-          ) : error ? (
-            <div className="text-center text-red-600 py-8">{error}</div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredProjects.map((project, index) => (
-                <AnimatedSection 
-                  key={project.id}
-                  animation="scale-in" 
-                  delay={index * 100}
-                >
-                  <ProjectCard
-                    image={project.imageUrl}
-                    title={project.name}
-                    description={project.description}
-                    category={project.category}
-                    location={project.location}
-                    duration={project.duration}
-                    onClick={() => { setSelectedProject(project); setModalOpen(true); }}
-                  />
-                </AnimatedSection>
-              ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredProjects.map((project, index) => (
+              <motion.div
+                key={project.title}
+                className="bg-white rounded-xl shadow-md border border-gray-100 flex flex-col overflow-hidden cursor-pointer"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ y: -8, scale: 1.03, boxShadow: '0 8px 32px 0 rgba(0,0,0,0.12)' }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.7, ease: 'easeOut', delay: index * 0.1 }}
+              >
+                <div className="w-full h-48 bg-gray-100 flex items-center justify-center">
+                  <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                </div>
+                <div className="flex-1 flex flex-col items-center justify-center text-center p-6">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">{project.title}</h3>
+                  <span className="inline-block bg-orange-600 text-white text-xs font-semibold px-3 py-1 rounded-full mb-1">{project.location}</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+          {filteredProjects.length === 0 && (
+            <div className="text-center py-12">
+              <p className="text-gray-500 text-lg">{t('projectsPage.noProjects')}</p>
             </div>
           )}
-          {filteredProjects.length === 0 && !loading && (
-            <AnimatedSection animation="fade-in">
-              <div className="text-center py-12">
-                <p className="text-gray-500 text-lg">{t('projectsPage.noProjects')}</p>
-              </div>
-            </AnimatedSection>
-          )}
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-20 bg-orange-600">
-        <div className="container-custom">
-          <AnimatedSection animation="fade-in">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center text-white">
-              <div className="group">
-                <div className="stats-counter mb-2 group-hover:scale-110 transition-transform duration-300">50+</div>
-                <div className="text-orange-100 group-hover:text-white transition-colors duration-300">Projects Completed</div>
-              </div>
-              <div className="group">
-                <div className="stats-counter mb-2 group-hover:scale-110 transition-transform duration-300">8</div>
-                <div className="text-orange-100 group-hover:text-white transition-colors duration-300">Iraqi Cities</div>
-              </div>
-              <div className="group">
-                <div className="stats-counter mb-2 group-hover:scale-110 transition-transform duration-300">200+</div>
-                <div className="text-orange-100 group-hover:text-white transition-colors duration-300">Team Members</div>
-              </div>
-              <div className="group">
-                <div className="stats-counter mb-2 group-hover:scale-110 transition-transform duration-300">99%</div>
-                <div className="text-orange-100 group-hover:text-white transition-colors duration-300">Client Satisfaction</div>
-              </div>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-gray-900 text-white">
-        <div className="container-custom text-center">
-          <AnimatedSection animation="fade-in">
-            <h2 className="text-4xl font-bold mb-6">
-              Ready to Start Your Project?
-            </h2>
-            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              Let's discuss how we can help transform your infrastructure vision into reality. 
-              Our experienced team is ready to deliver exceptional results.
-            </p>
-            <Button 
-              as="a"
-              href="/contact"
-              variant="primary"
-              size="large"
-              icon={ArrowRight}
-              className="shadow-construction group"
-            >
-              Get Started Today
-            </Button>
-          </AnimatedSection>
         </div>
       </section>
 

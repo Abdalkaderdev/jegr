@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Users, Award, Clock, CheckCircle } from 'lucide-react';
+import { ArrowRight, Users, Award, Clock, CheckCircle, Hammer, Lightbulb, RailSymbol, Home, MapPin, Shield } from 'lucide-react';
 import Button from '../components/ui/Button';
 import { ServiceCard, ProjectCard } from '../components/ui/Card';
 import AnimatedSection from '../components/ui/AnimatedSection';
@@ -11,64 +12,121 @@ import ProjectGallery from '../components/ProjectGallery';
 import StickyCTA from '../components/StickyCTA';
 import Alramadi from '../assets/Alramadi.png';
 import WhoWeAre from '../assets/who we are.png';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import { Navigation } from 'swiper/modules';
+import HeroProjectImg from '../assets/IMG_6001.png';
+import FutreImg from '../assets/futre.png';
+import ZaitonPlusImg from '../assets/zaiton plus.png';
+import EmpireImg from '../assets/empire.png';
+import ferdawsImg from '../assets/ferdaws.png';
+import goldenImg from '../assets/golden.png';
+import muhanadImg from '../assets/muhanad.png';
+import parkImg from '../assets/park.png';
+import frenchImg from '../assets/french.png';
 
 const HomePage = () => {
   const { t } = useTranslation();
   const [services, setServices] = useState<any[]>([]);
-  const [projects, setProjects] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+  // Static featured projects data
+  const featuredProjects = [
+    {
+      image: FutreImg,
+      title: 'Future City',
+      description: 'A landmark urban development in Erbil, Kurdistan, Iraq, featuring innovative lighting and landscape solutions.',
+      category: 'Urban Development',
+      location: 'Erbil, Kurdistan, Iraq',
+      duration: '2024',
+    },
+    {
+      image: ZaitonPlusImg,
+      title: 'Zaiton Plus',
+      description: 'A modern residential project in Erbil, Kurdistan, Iraq, with advanced street lighting and landscaping.',
+      category: 'Residential',
+      location: 'Erbil, Kurdistan, Iraq',
+      duration: '2023',
+    },
+    {
+      image: EmpireImg,
+      title: 'Empire World',
+      description: 'A prestigious mixed-use development in Erbil, Kurdistan, Iraq, known for its iconic lighting and urban design.',
+      category: 'Mixed-Use',
+      location: 'Erbil, Kurdistan, Iraq',
+      duration: '2022',
+    },
+  ];
 
   useEffect(() => {
-    setLoading(true);
-    Promise.all([
-      fetch('/api/services').then((res) => res.json()),
-      fetch('/api/projects').then((res) => res.json()),
-    ])
-      .then(([servicesData, projectsData]) => {
-        setServices(servicesData);
-        setProjects(projectsData);
-        setLoading(false);
-      })
-      .catch(() => {
-        setError('Failed to load content');
-        setLoading(false);
-      });
+    fetch('/api/services').then((res) => res.json())
+      .then((servicesData) => setServices(servicesData))
+      .catch(() => {});
   }, []);
 
   return (
     <>
       {/* Hero Section */}
       <section className="relative h-[70vh] md:h-[80vh] flex items-center justify-center overflow-hidden">
-        <div 
-          className="hero-background absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${Alramadi})`,
-            backgroundPosition: 'center',
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
-          }}
-        />
-        <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4">
-          <h1 className="hero-text text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            {t('homepage.heroTitle')}
-          </h1>
-          <p className="hero-text-delay text-xl md:text-2xl mb-8 font-light">
-            {t('homepage.heroSubtitle')}
-          </p>
-          <div className="hero-button">
-            <Button 
-              as={Link}
-              to="/services"
-              variant="primary"
-              size="large"
-              icon={ArrowRight}
-              className="shadow-construction group"
-            >
-              {t('homepage.heroCTA')}
-            </Button>
-          </div>
-        </div>
+        <Swiper
+          loop={true}
+          className="w-full h-full"
+          modules={[Autoplay]}
+          autoplay={{ delay: 3000, disableOnInteraction: false }}
+        >
+          <SwiperSlide>
+            <div className="relative w-full h-full flex items-center justify-center">
+              <div className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat" style={{
+                backgroundImage: `linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(${Alramadi})`,
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
+              }} />
+              <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4 flex flex-col items-center justify-center h-[70vh] md:h-[80vh]">
+                <h1 className="hero-text text-5xl md:text-7xl font-bold mb-6 leading-tight">{t('homepage.heroTitle')}</h1>
+                <p className="hero-text-delay text-xl md:text-2xl mb-8 font-light">{t('homepage.heroSubtitle')}</p>
+                <div className="hero-button">
+                  <Button 
+                    as={Link}
+                    to="/services"
+                    variant="primary"
+                    size="large"
+                    icon={ArrowRight}
+                    className="shadow-construction group"
+                  >
+                    {t('homepage.heroCTA')}
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="relative w-full h-full flex items-center justify-center">
+              <div className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat" style={{
+                backgroundImage: `linear-gradient(rgba(0,0,0,0.25),rgba(0,0,0,0.25)), url(${HeroProjectImg})`,
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
+              }} />
+              <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4 flex flex-col items-center justify-center h-[70vh] md:h-[80vh]">
+                <h1 className="hero-text text-5xl md:text-7xl font-bold mb-6 leading-tight">{t('homepage.projectsTitle')}</h1>
+                <p className="hero-text-delay text-xl md:text-2xl mb-8 font-light">{t('homepage.projectsDesc')}</p>
+                <div className="hero-button">
+                  <Button 
+                    as={Link}
+                    to="/projects"
+                    variant="primary"
+                    size="large"
+                    icon={ArrowRight}
+                    className="shadow-construction group"
+                  >
+                    {t('homepage.projectsCTA')}
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>
+        </Swiper>
       </section>
 
       {/* About Section */}
@@ -122,34 +180,57 @@ const HomePage = () => {
         <div className="container-custom">
           <AnimatedSection animation="fade-in">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">{t('homepage.servicesTitle')}</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                {t('homepage.servicesDesc')}
+                We offer a wide range of services to meet the needs of our clients in the fields of manufacturing, infrastructure, and development.
               </p>
             </div>
           </AnimatedSection>
 
-          {loading ? (
-            <div className="text-center text-gray-500 py-8">Loading...</div>
-          ) : error ? (
-            <div className="text-center text-red-600 py-8">{error}</div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {services.slice(0, 6).map((service: any, index: number) => (
-                <AnimatedSection 
-                  key={service._id}
-                  animation="scale-in" 
-                  delay={index * 100}
-                >
-                  <ServiceCard
-                    icon={null}
-                    title={service.name}
-                    description={service.description}
-                  />
-                </AnimatedSection>
-              ))}
-            </div>
-          )}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <AnimatedSection animation="scale-in" delay={0}>
+              <ServiceCard
+                icon={<Hammer className="w-7 h-7 text-orange-600" />} 
+                title="Manufacturing various types of lighting poles"
+                description="High-quality manufacturing of lighting poles for urban and industrial applications."
+              />
+            </AnimatedSection>
+            <AnimatedSection animation="scale-in" delay={100}>
+              <ServiceCard
+                icon={<Lightbulb className="w-7 h-7 text-orange-600" />} 
+                title="Supplying lighting systems and electrical installations"
+                description="Supplying and installing advanced lighting systems and electrical solutions."
+              />
+            </AnimatedSection>
+            <AnimatedSection animation="scale-in" delay={200}>
+              <ServiceCard
+                icon={<RailSymbol className="w-7 h-7 text-orange-600" />} 
+                title="Designing and developing urban infrastructure"
+                description="Comprehensive design and development of urban infrastructure projects."
+              />
+            </AnimatedSection>
+            <AnimatedSection animation="scale-in" delay={300}>
+              <ServiceCard
+                icon={<Award className="w-7 h-7 text-orange-600" />} 
+                title="Executing general contracting projects"
+                description="Professional execution of general contracting and construction projects."
+              />
+            </AnimatedSection>
+            <AnimatedSection animation="scale-in" delay={400}>
+              <ServiceCard
+                icon={<Home className="w-7 h-7 text-orange-600" />} 
+                title="Real estate investment and development"
+                description="Investment and development in real estate for sustainable growth."
+              />
+            </AnimatedSection>
+            <AnimatedSection animation="scale-in" delay={500}>
+              <ServiceCard
+                icon={<Users className="w-7 h-7 text-orange-600" />} 
+                title="Engineering consultancy for government projects"
+                description="Expert engineering consultancy for government and public sector projects."
+              />
+            </AnimatedSection>
+          </div>
 
           <AnimatedSection animation="fade-in" delay={600}>
             <div className="text-center mt-12">
@@ -160,63 +241,165 @@ const HomePage = () => {
                 icon={ArrowRight}
                 className="group"
               >
-                {t('homepage.servicesCTA')}
+                Learn More About Our Services
               </Button>
             </div>
           </AnimatedSection>
         </div>
       </section>
 
-      {/* Projects Section */}
+      {/* Why Do Clients Choose Us Section */}
       <section className="py-20 bg-gray-50">
         <div className="container-custom">
           <AnimatedSection animation="fade-in">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">{t('homepage.projectsTitle')}</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Do Clients Choose Us?</h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                {t('homepage.projectsDesc')}
+                Discover the key reasons our clients trust and choose us for their projects.
               </p>
             </div>
           </AnimatedSection>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <AnimatedSection animation="scale-in" delay={0}>
+              <div className="bg-white rounded-xl shadow-md border border-gray-100 p-6 flex flex-col items-center text-center justify-center min-h-[320px]">
+                <Award className="w-10 h-10 text-orange-600 mb-4" />
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">In-house manufacturing with international standards</h3>
+                <p className="text-gray-600">We manufacture all products in-house, ensuring quality and compliance with global standards.</p>
+              </div>
+            </AnimatedSection>
+            <AnimatedSection animation="scale-in" delay={100}>
+              <div className="bg-white rounded-xl shadow-md border border-gray-100 p-6 flex flex-col items-center text-center justify-center min-h-[320px]">
+                <Lightbulb className="w-10 h-10 text-orange-600 mb-4" />
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">From idea to execution</h3>
+                <p className="text-gray-600">We support our clients at every stage, from concept to project delivery.</p>
+              </div>
+            </AnimatedSection>
+            <AnimatedSection animation="scale-in" delay={200}>
+              <div className="bg-white rounded-xl shadow-md border border-gray-100 p-6 flex flex-col items-center text-center justify-center min-h-[320px]">
+                <CheckCircle className="w-10 h-10 text-orange-600 mb-4" />
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">Trusted by government entities</h3>
+                <p className="text-gray-600">Our reputation is built on successful collaborations with government and public sector clients.</p>
+              </div>
+            </AnimatedSection>
+            <AnimatedSection animation="scale-in" delay={300}>
+              <div className="bg-white rounded-xl shadow-md border border-gray-100 p-6 flex flex-col items-center text-center justify-center min-h-[320px]">
+                <MapPin className="w-10 h-10 text-orange-600 mb-4" />
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">Based in Iraq and covering all provinces</h3>
+                <p className="text-gray-600">We are proudly based in Iraq and serve clients across all provinces.</p>
+              </div>
+            </AnimatedSection>
+            <AnimatedSection animation="scale-in" delay={400}>
+              <div className="bg-white rounded-xl shadow-md border border-gray-100 p-6 flex flex-col items-center text-center justify-center min-h-[320px]">
+                <Shield className="w-10 h-10 text-orange-600 mb-4" />
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">High quality and on-time execution</h3>
+                <p className="text-gray-600">We deliver high-quality results on schedule, every time.</p>
+              </div>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
 
-          {loading ? (
-            <div className="text-center text-gray-500 py-8">Loading...</div>
-          ) : error ? (
-            <div className="text-center text-red-600 py-8">{error}</div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {projects.slice(0, 3).map((project: any, index: number) => (
-                <AnimatedSection 
-                  key={project._id}
-                  animation="fade-in" 
-                  delay={index * 150}
-                >
-                  <ProjectCard
-                    image={project.imageUrl}
-                    title={project.name}
-                    description={project.description}
-                    category={project.category}
-                    location={project.location}
-                    duration={project.duration}
-                  />
-                </AnimatedSection>
-              ))}
-            </div>
-          )}
-
-          <AnimatedSection animation="fade-in" delay={500}>
-            <div className="text-center mt-12">
-              <Button 
-                as={Link}
-                to="/projects"
-                variant="primary"
-                icon={ArrowRight}
-                className="group"
-              >
-                {t('homepage.projectsCTA')}
-              </Button>
-            </div>
-          </AnimatedSection>
+      {/* Featured Projects Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="container-custom">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Featured Projects</h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              A selection of our landmark lighting and infrastructure projects across Erbil, Kurdistan, Iraq.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <motion.div
+              className="bg-white rounded-xl shadow-md border border-gray-100 flex flex-col overflow-hidden"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.7, ease: 'easeOut' }}
+            >
+              <div className="w-full h-48 bg-gray-100 flex items-center justify-center">
+                <img src={EmpireImg} alt="Empire World" className="w-full h-full object-cover" />
+              </div>
+              <div className="flex-1 flex flex-col items-center justify-center text-center p-6">
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">Empire World</h3>
+                <span className="inline-block bg-orange-600 text-white text-xs font-semibold px-3 py-1 rounded-full mb-1">Erbil, Kurdistan - Iraq</span>
+              </div>
+            </motion.div>
+            <motion.div
+              className="bg-white rounded-xl shadow-md border border-gray-100 flex flex-col overflow-hidden"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.7, ease: 'easeOut', delay: 0.1 }}
+            >
+              <div className="w-full h-48 bg-gray-100 flex items-center justify-center">
+                <img src={ferdawsImg} alt="Ferdaws City" className="w-full h-full object-cover" />
+              </div>
+              <div className="flex-1 flex flex-col items-center justify-center text-center p-6">
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">Ferdaws City</h3>
+                <span className="inline-block bg-orange-600 text-white text-xs font-semibold px-3 py-1 rounded-full mb-1">Erbil, Kurdistan - Iraq</span>
+              </div>
+            </motion.div>
+            <motion.div
+              className="bg-white rounded-xl shadow-md border border-gray-100 flex flex-col overflow-hidden"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.7, ease: 'easeOut', delay: 0.2 }}
+            >
+              <div className="w-full h-48 bg-gray-100 flex items-center justify-center">
+                <img src={FutreImg} alt="Future City" className="w-full h-full object-cover" />
+              </div>
+              <div className="flex-1 flex flex-col items-center justify-center text-center p-6">
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">Future City</h3>
+                <span className="inline-block bg-orange-600 text-white text-xs font-semibold px-3 py-1 rounded-full mb-1">Erbil, Kurdistan - Iraq</span>
+              </div>
+            </motion.div>
+            <motion.div
+              className="bg-white rounded-xl shadow-md border border-gray-100 flex flex-col overflow-hidden"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.7, ease: 'easeOut', delay: 0.3 }}
+            >
+              <div className="w-full h-48 bg-gray-100 flex items-center justify-center">
+                <img src={frenchImg} alt="French Village" className="w-full h-full object-cover" />
+              </div>
+              <div className="flex-1 flex flex-col items-center justify-center text-center p-6">
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">French Village</h3>
+                <span className="inline-block bg-orange-600 text-white text-xs font-semibold px-3 py-1 rounded-full mb-1">Duhok, Kurdistan - Iraq</span>
+              </div>
+            </motion.div>
+            <motion.div
+              className="bg-white rounded-xl shadow-md border border-gray-100 flex flex-col overflow-hidden"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.7, ease: 'easeOut', delay: 0.4 }}
+            >
+              <div className="w-full h-48 bg-gray-100 flex items-center justify-center">
+                <img src={parkImg} alt="Park Sami Abdulrahman" className="w-full h-full object-cover" />
+              </div>
+              <div className="flex-1 flex flex-col items-center justify-center text-center p-6">
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">Park Sami Abdulrahman</h3>
+                <span className="inline-block bg-orange-600 text-white text-xs font-semibold px-3 py-1 rounded-full mb-1">Erbil, Kurdistan - Iraq</span>
+              </div>
+            </motion.div>
+            <motion.div
+              className="bg-white rounded-xl shadow-md border border-gray-100 flex flex-col overflow-hidden"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.7, ease: 'easeOut', delay: 0.5 }}
+            >
+              <div className="w-full h-48 bg-gray-100 flex items-center justify-center">
+                <img src={ZaitonPlusImg} alt="Zaiton Plus" className="w-full h-full object-cover" />
+              </div>
+              <div className="flex-1 flex flex-col items-center justify-center text-center p-6">
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">Zaiton Plus</h3>
+                <span className="inline-block bg-orange-600 text-white text-xs font-semibold px-3 py-1 rounded-full mb-1">Erbil, Kurdistan - Iraq</span>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 

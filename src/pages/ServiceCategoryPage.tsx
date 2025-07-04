@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import servicesCategories from '../../api/servicesCategories.json';
+import servicesCategories from "../data/servicesCategories.json";
 
 const ServiceCategoryPage = () => {
   const { categoryName } = useParams();
