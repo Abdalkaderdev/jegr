@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "name": "Concrete Works",
+    "description": "Stamped concrete for urban plazas.",
+    "images": ["/images/concrete1.jpg"],
+    "category": "Concrete",
+    "createdAt": "2024-04-15T09:00:00Z"
+  },
+  {
+    "id": 2,
+    "name": "Lighting Installation",
+    "description": "LED lighting for city streets.",
+    "images": ["/images/lighting1.jpg"],
+    "category": "Lighting",
+    "createdAt": "2024-05-05T14:00:00Z"
+  }
+] 

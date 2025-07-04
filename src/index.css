@@ -1,0 +1,566 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS Variables for Construction Theme */
+:root {
+  --primary-orange: #ea580c;
+  --primary-orange-dark: #c2410c;
+  --primary-orange-light: #fed7aa;
+  --secondary-yellow: #eab308;
+  --secondary-yellow-dark: #ca8a04;
+  --neutral-gray-50: #f9fafb;
+  --neutral-gray-100: #f3f4f6;
+  --neutral-gray-200: #e5e7eb;
+  --neutral-gray-300: #d1d5db;
+  --neutral-gray-400: #9ca3af;
+  --neutral-gray-500: #6b7280;
+  --neutral-gray-600: #4b5563;
+  --neutral-gray-700: #374151;
+  --neutral-gray-800: #1f2937;
+  --neutral-gray-900: #111827;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --color-primary: #ea580c;
+  --color-secondary: #eab308;
+}
+
+/* Smooth scrolling for the entire page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Base animations and transitions */
+* {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Button Components */
+.btn-primary {
+  @apply inline-flex items-center justify-center px-6 py-3 text-white font-semibold rounded-lg shadow-md;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  @apply hover:opacity-90 hover:shadow-lg hover:scale-105;
+  @apply active:scale-95 active:shadow-sm;
+  @apply focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2;
+  @apply disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center px-6 py-3 border-2 text-white font-semibold rounded-lg;
+  background: linear-gradient(135deg, var(--color-secondary), var(--color-primary));
+  border: none;
+  @apply hover:opacity-90 hover:shadow-md hover:scale-105;
+  @apply active:scale-95;
+  @apply focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2;
+  @apply disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-tertiary {
+  @apply inline-flex items-center justify-center px-6 py-3 border-2 border-gray-300 text-gray-700 font-semibold rounded-lg;
+  @apply hover:bg-gray-50 hover:border-gray-400 hover:shadow-md hover:scale-105;
+  @apply active:scale-95;
+  @apply focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2;
+  @apply disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:bg-transparent;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-large {
+  @apply px-8 py-4 text-lg;
+}
+
+.btn-small {
+  @apply px-4 py-2 text-sm;
+}
+
+/* Card Components */
+.card-base {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  @apply rounded-xl shadow-md border border-gray-100;
+  @apply hover:shadow-xl hover:scale-105 hover:-translate-y-1;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-service {
+  @apply card-base p-6;
+  @apply hover:border-orange-200;
+}
+
+.card-project {
+  @apply card-base overflow-hidden;
+  @apply hover:border-orange-200;
+}
+
+.card-testimonial {
+  @apply card-base p-8;
+  @apply hover:border-orange-200 hover:bg-orange-50;
+}
+
+/* Navigation Components */
+.navbar-sticky {
+  @apply sticky top-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar-scrolled {
+  @apply shadow-lg;
+  height: 60px;
+}
+
+.nav-link {
+  @apply relative px-3 py-2 text-sm font-medium text-gray-700;
+  @apply hover:text-orange-600;
+  transition: color 0.2s ease-in-out;
+}
+
+.nav-link::after {
+  content: '';
+  @apply absolute bottom-0 left-0 w-0 h-0.5 bg-orange-600;
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  @apply w-full;
+}
+
+/* Hero Section Animations */
+.hero-text {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: heroFadeIn 1s ease-out 0.3s forwards;
+}
+
+.hero-text-delay {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: heroFadeIn 1s ease-out 0.5s forwards;
+}
+
+.hero-button {
+  opacity: 0;
+  transform: translateY(30px) scale(0.9);
+  animation: heroButtonIn 1s ease-out 0.7s forwards;
+}
+
+.hero-background {
+  animation: heroZoom 20s ease-out infinite alternate;
+}
+
+@keyframes heroFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroButtonIn {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes heroZoom {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+/* Animation Classes */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.fade-in-delay-1 {
+  animation-delay: 0.1s;
+}
+
+.fade-in-delay-2 {
+  animation-delay: 0.2s;
+}
+
+.fade-in-delay-3 {
+  animation-delay: 0.3s;
+}
+
+.slide-in-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  animation: slideInLeft 0.6s ease-out forwards;
+}
+
+.slide-in-right {
+  opacity: 0;
+  transform: translateX(30px);
+  animation: slideInRight 0.6s ease-out forwards;
+}
+
+.scale-in {
+  opacity: 0;
+  transform: scale(0.9);
+  animation: scaleIn 0.5s ease-out forwards;
+}
+
+/* Keyframe Animations */
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Scroll Animations */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-animate-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-animate-right {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-animate-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-animate-down {
+  opacity: 0;
+  transform: translateY(-30px);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-animate-scale {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-animate.animate,
+.scroll-animate-left.animate,
+.scroll-animate-right.animate,
+.scroll-animate-up.animate,
+.scroll-animate-down.animate {
+  opacity: 1;
+  transform: translateY(0) translateX(0);
+}
+
+.scroll-animate-scale.animate {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Hover Effects for Links */
+.link-underline {
+  @apply relative;
+}
+
+.link-underline::after {
+  content: '';
+  @apply absolute bottom-0 left-0 w-0 h-0.5 bg-orange-600;
+  transition: width 0.3s ease-in-out;
+}
+
+.link-underline:hover::after {
+  @apply w-full;
+}
+
+/* Image Hover Effects */
+.image-hover-zoom {
+  @apply overflow-hidden;
+}
+
+.image-hover-zoom img {
+  @apply transition-transform duration-500 ease-in-out;
+}
+
+.image-hover-zoom:hover img {
+  @apply scale-110;
+}
+
+/* Project Card Overlay Effects */
+.project-overlay {
+  @apply absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent;
+  @apply opacity-0 transition-opacity duration-300;
+}
+
+.project-card:hover .project-overlay {
+  @apply opacity-100;
+}
+
+.project-details {
+  @apply absolute bottom-4 left-4 right-4 transform translate-y-4 opacity-0;
+  @apply transition-all duration-300;
+}
+
+.project-card:hover .project-details {
+  @apply translate-y-0 opacity-100;
+}
+
+/* Form Components */
+.form-input {
+  @apply w-full px-4 py-3 border border-gray-300 rounded-lg;
+  @apply focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent;
+  @apply hover:border-gray-400;
+  transition: all 0.3s ease-in-out;
+}
+
+.form-input:focus {
+  @apply shadow-lg;
+  box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.1);
+}
+
+.form-textarea {
+  @apply form-input resize-none;
+}
+
+.form-select {
+  @apply form-input appearance-none bg-white;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5rem;
+}
+
+/* Success Message Animation */
+.success-message {
+  @apply fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg;
+  @apply transform translate-x-full opacity-0;
+  @apply transition-all duration-300;
+  z-index: 1000;
+}
+
+.success-message.show {
+  @apply translate-x-0 opacity-100;
+}
+
+/* Loading States */
+.loading-spinner {
+  @apply inline-block w-4 h-4 border-2 border-current border-t-transparent rounded-full;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Page Transition Effects */
+.page-transition-enter {
+  opacity: 0;
+  transform: scale(0.98);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: all 400ms ease-out;
+}
+
+.page-transition-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transform: scale(0.98);
+  transition: all 400ms ease-in;
+}
+
+/* Utility Classes */
+.text-gradient {
+  background: linear-gradient(135deg, #ea580c, #eab308);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bg-gradient-construction {
+  background: linear-gradient(135deg, #ea580c, #eab308);
+}
+
+.shadow-construction {
+  box-shadow: 0 10px 25px -5px rgba(234, 88, 12, 0.1), 0 8px 10px -6px rgba(234, 88, 12, 0.1);
+}
+
+/* Gradient Utilities for Theme */
+.bg-gradient-theme {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+}
+.text-gradient-theme {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Responsive Utilities */
+.container-custom {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-orange-400 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-orange-500;
+}
+
+/* Mobile Menu Animation */
+.mobile-menu-enter {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.mobile-menu-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.3s ease-out;
+}
+
+.mobile-menu-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mobile-menu-exit-active {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease-in;
+}
+
+/* Focus States for Accessibility */
+.focus-visible {
+  @apply focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2;
+}
+
+/* Filter Button Animations */
+.filter-button {
+  @apply px-6 py-2 rounded-full font-medium transition-all duration-300;
+  @apply hover:scale-105 active:scale-95;
+}
+
+.filter-button.active {
+  @apply bg-orange-600 text-white shadow-lg;
+  animation: filterPulse 0.3s ease-out;
+}
+
+.filter-button:not(.active) {
+  @apply bg-white text-gray-700 hover:bg-orange-100 border border-gray-300;
+}
+
+@keyframes filterPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Stats Counter Animation */
+.stats-counter {
+  @apply text-4xl font-bold;
+  animation: countUp 2s ease-out;
+}
+
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Timeline Animation */
+.timeline-item {
+  @apply relative opacity-0 transform translate-x-8;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.timeline-item.animate {
+  @apply opacity-100 transform translate-x-0;
+}
+
+.timeline-item:nth-child(even) {
+  @apply transform -translate-x-8;
+}
+
+.timeline-item:nth-child(even).animate {
+  @apply transform translate-x-0;
+}
+
+/* FAQ Accordion Animation */
+.faq-item {
+  @apply transition-all duration-300;
+}
+
+.faq-item:hover {
+  @apply shadow-md transform scale-105;
+}
+
+/* Print Styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}

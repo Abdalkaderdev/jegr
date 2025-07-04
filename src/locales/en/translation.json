@@ -1,0 +1,200 @@
+{
+  "navbar": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "projects": "Projects",
+    "contact": "Contact",
+    "admin": "Admin",
+    "toggleLang": "العربية"
+  },
+  "footer": {
+    "company": "Jegr Jalal Company",
+    "rights": "All rights reserved. Strong. Elegant. Jegr Jalal.",
+    "rightsShort": "All rights reserved.",
+    "quickLinks": "Quick Links",
+    "contactInfo": "Contact Info",
+    "address": "Baghdad, Iraq",
+    "phone": "+964 XXX XXX XXXX",
+    "email": "info@jegrjalal.com",
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "homepage": {
+    "heroTitle": "Shaping Cities Across Iraq",
+    "heroSubtitle": "Strong. Elegant. Durable Urban Solutions.",
+    "heroCTA": "Explore Our Services",
+    "aboutTitle": "Who We Are",
+    "aboutText1": "Jegr Jalal Company is Iraq's premier construction and infrastructure development firm, dedicated to building sustainable urban solutions that stand the test of time.",
+    "aboutText2": "From landscaping and road development to specialized concrete work and security installations, we deliver comprehensive solutions that enhance urban life across Iraq.",
+    "aboutSlogan": "Strong. Elegant. Jegr Jalal.",
+    "servicesTitle": "Our Services",
+    "servicesDesc": "Comprehensive construction and infrastructure solutions tailored to meet Iraq's urban development needs.",
+    "servicesCTA": "View All Services",
+    "projectsTitle": "Featured Projects",
+    "projectsDesc": "Discover our most impactful infrastructure projects that have transformed Iraqi cities.",
+    "projectsCTA": "View All Projects",
+    "contactTitle": "Ready to Build Something Amazing?",
+    "contactDesc": "Get in touch with our expert team to discuss your next construction or infrastructure project. We're here to bring your vision to life with our proven expertise and commitment to excellence.",
+    "contactCTA": "Contact Us"
+  },
+  "servicesPage": {
+    "heroTitle": "Our Solutions",
+    "heroDesc": "Comprehensive construction and infrastructure services designed to build stronger, more beautiful communities across Iraq.",
+    "whyChoose": "Why Choose Jegr Jalal Company?",
+    "ctaTitle": "Need a Custom Solution?",
+    "ctaDesc": "Our team is ready to discuss your specific requirements and create a tailored solution that meets your unique needs and budget.",
+    "ctaButton": "Contact Us Today"
+  },
+  "projectsPage": {
+    "heroTitle": "Our Projects",
+    "heroDesc": "Discover our portfolio of successful infrastructure projects that have transformed communities across Iraq.",
+    "filter": "Filter by category:",
+    "noProjects": "No projects found for the selected category.",
+    "stats": {
+      "completed": "Projects Completed",
+      "cities": "Iraqi Cities",
+      "team": "Team Members",
+      "satisfaction": "Client Satisfaction"
+    },
+    "ctaTitle": "Ready to Start Your Project?",
+    "ctaDesc": "Let's discuss how we can help transform your infrastructure vision into reality. Our experienced team is ready to deliver exceptional results.",
+    "ctaButton": "Get Started"
+  },
+  "aboutPage": {
+    "title": "About Us",
+    "visionTitle": "Our Vision",
+    "visionText": "To be Iraq's leading provider of innovative, sustainable, and elegant urban solutions.",
+    "missionTitle": "Our Mission",
+    "missionText": "To deliver high-quality construction and infrastructure projects that enhance communities and improve lives across Iraq."
+  },
+  "contactPage": {
+    "title": "Contact Us",
+    "intro": "We'd love to hear from you! Reach out to our team for any inquiries, project discussions, or support.",
+    "contactInfoTitle": "Contact Information",
+    "contactInfoIntro": "Our team is available to assist you with your needs. Find our contact details below.",
+    "quickResponseGuarantee": "Quick Response Guarantee",
+    "quickResponseGuaranteeDescription": "We aim to respond to all inquiries within 24 hours.",
+    "faqTitle": "Frequently Asked Questions",
+    "faqIntro": "Find answers to common questions about our services, process, and company.",
+    "faq1Question": "How do I request a project quote?",
+    "faq1Answer": "You can request a quote by filling out our contact form or emailing quotes@jegrjalal.com. Our team will get back to you promptly.",
+    "faq2Question": "What areas do you serve?",
+    "faq2Answer": "We serve clients across all regions of Iraq, with a focus on major cities and urban areas.",
+    "faq3Question": "What types of projects do you handle?",
+    "faq3Answer": "We handle a wide range of construction and infrastructure projects, including landscaping, roadworks, concrete, lighting, and security installations.",
+    "info": {
+      "address": {
+        "company": "Jegr Jalal Company",
+        "city": "Baghdad, Iraq",
+        "building": "Main Office Building"
+      },
+      "phone": {
+        "main": "Main Office: +964 XXX XXX XXXX",
+        "emergency": "Emergency Line: +964 XXX XXX XXXX",
+        "project": "Project Management: +964 XXX XXX XXXX"
+      },
+      "email": {
+        "general": "General: info@jegrjalal.com",
+        "quotes": "Project Quotes: quotes@jegrjalal.com",
+        "support": "Support: support@jegrjalal.com"
+      },
+      "hours": {
+        "weekdays": "Sunday - Thursday: 8:00 AM - 6:00 PM",
+        "friday": "Friday: 8:00 AM - 2:00 PM",
+        "saturday": "Saturday: Closed"
+      }
+    },
+    "form": {
+      "formTitle": "Contact Us",
+      "formTitleMessage": "Send us a message and our team will get back to you soon.",
+      "name": "Full Name *",
+      "namePlaceholder": "Enter your full name",
+      "email": "Email Address *",
+      "emailPlaceholder": "Enter your email address",
+      "phone": "Phone Number",
+      "phonePlaceholder": "Enter your phone number (optional)",
+      "serviceInterest": "Service of Interest",
+      "serviceOptions": {
+        "default": "Select a service",
+        "landscape": "Landscape Design",
+        "road": "Road & Traffic Signs",
+        "concrete": "Stamped Concrete",
+        "kerbstone": "Kerbstone & Basalt",
+        "lighting": "Lighting Poles",
+        "security": "Security Booths",
+        "other": "Other"
+      },
+      "message": "Message",
+      "messagePlaceholder": "Type your message here...",
+      "submit": "Send Message"
+    }
+  },
+  "admin": {
+    "loginTitle": "Admin Login",
+    "username": "Username",
+    "password": "Password",
+    "login": "Login",
+    "dashboard": "Dashboard",
+    "projects": "Projects",
+    "services": "Services",
+    "logout": "Logout",
+    "manageProjects": "Manage Projects",
+    "manageServices": "Manage Services",
+    "addProject": "Add Project",
+    "addService": "Add Service",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save Changes",
+    "cancel": "Cancel",
+    "sidebar": {
+      "title": "Admin Panel",
+      "dashboard": "Dashboard",
+      "projects": "Projects",
+      "services": "Services"
+    }
+  },
+  "dashboard": {
+    "analytics": "Analytics",
+    "filters": "Filters",
+    "dateRange": "Date Range",
+    "category": "Category",
+    "actionType": "Action Type",
+    "export": "Export Analytics",
+    "topCategories": "Top Categories",
+    "growthRate": "Growth Rate",
+    "activityBreakdown": "Activity Breakdown",
+    "projectsByCategory": "Projects by Category",
+    "servicesByCategory": "Services by Category",
+    "projectsPerMonth": "Projects Added per Month",
+    "servicesPerMonth": "Services Added per Month",
+    "recentActivity": "Recent Activity",
+    "noActivity": "No recent activity.",
+    "add": "Add",
+    "update": "Update",
+    "delete": "Delete",
+    "bulkDelete": "Bulk Delete",
+    "all": "All",
+    "selectCategory": "Select category",
+    "selectAction": "Select action type",
+    "growth": "Growth",
+    "count": "Count",
+    "month": "Month",
+    "categoryLabel": "Category",
+    "actions": {
+      "Add": "Add",
+      "Update": "Update",
+      "Delete": "Delete",
+      "Bulk Delete": "Bulk Delete"
+    },
+    "analyticsTooltip": "View key statistics and trends for your projects and services.",
+    "dateRangeTooltip": "Filter analytics and activity by a specific date range.",
+    "categoryTooltip": "Filter data by project or service category.",
+    "actionTypeTooltip": "Filter activity feed by action type (Add, Update, Delete, etc.).",
+    "exportTooltip": "Export analytics data as a CSV file.",
+    "noData": "No data available."
+  }
+} 

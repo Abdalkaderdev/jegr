@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "name": "Baghdad Bridge",
+    "description": "A major bridge construction in Baghdad.",
+    "images": ["/images/bridge1.jpg"],
+    "category": "Infrastructure",
+    "createdAt": "2024-04-01T10:00:00Z"
+  },
+  {
+    "id": 2,
+    "name": "Mosul Park",
+    "description": "Urban park landscaping in Mosul.",
+    "images": ["/images/park1.jpg"],
+    "category": "Landscaping",
+    "createdAt": "2024-05-10T12:00:00Z"
+  }
+] 
