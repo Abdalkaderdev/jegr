@@ -413,26 +413,6 @@ const HomePage = () => {
                 <p className="text-lg text-gray-300 mb-8 leading-relaxed">
                   {t('homepage.contactDesc')}
                 </p>
-                <div className="space-y-4">
-                  <div className="flex items-center space-x-3 group">
-                    <div className="flex-shrink-0 w-6 h-6 bg-orange-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <CheckCircle className="h-4 w-4 text-white" />
-                    </div>
-                    <span className="group-hover:text-orange-300 transition-colors duration-300">{t('homepage.contactFeature1')}</span>
-                  </div>
-                  <div className="flex items-center space-x-3 group">
-                    <div className="flex-shrink-0 w-6 h-6 bg-orange-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <CheckCircle className="h-4 w-4 text-white" />
-                    </div>
-                    <span className="group-hover:text-orange-300 transition-colors duration-300">{t('homepage.contactFeature2')}</span>
-                  </div>
-                  <div className="flex items-center space-x-3 group">
-                    <div className="flex-shrink-0 w-6 h-6 bg-orange-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <CheckCircle className="h-4 w-4 text-white" />
-                    </div>
-                    <span className="group-hover:text-orange-300 transition-colors duration-300">{t('homepage.contactFeature3')}</span>
-                  </div>
-                </div>
               </div>
             </AnimatedSection>
 
