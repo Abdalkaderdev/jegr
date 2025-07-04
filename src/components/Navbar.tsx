@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Hammer } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
+import logo from '../assets/IMG_9929.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -50,12 +51,7 @@ const Navbar = () => {
         <div className="flex justify-between h-16 items-center">
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-2 group">
-              <div className="p-2 bg-orange-100 rounded-lg group-hover:bg-orange-200 transition-colors duration-200">
-                <Hammer className="h-6 w-6 text-orange-600" />
-              </div>
-              <span className="text-xl font-bold text-gray-900 group-hover:text-orange-600 transition-colors duration-200">
-                {t('footer.company')}
-              </span>
+              <img src={logo} alt="Company Logo" className="h-10 w-auto" />
             </Link>
           </div>
 

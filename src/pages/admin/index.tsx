@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import logo from '../../assets/IMG_9929.png';
 
 const AdminLogin: React.FC = () => {
   const [form, setForm] = useState({ email: '', password: '' });
@@ -24,6 +25,9 @@ const AdminLogin: React.FC = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-md w-full max-w-sm">
+        <div className="flex justify-center mb-4">
+          <img src={logo} alt="Company Logo" className="h-12 w-auto" />
+        </div>
         <h1 className="text-2xl font-bold text-center text-orange-600 mb-6">Admin Login</h1>
         {error && <div className="mb-4 text-red-600 text-center">{error}</div>}
         <div className="mb-4">
