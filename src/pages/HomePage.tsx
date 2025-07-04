@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Users, Award, Clock, CheckCircle, Lightbulb, Loader as Road, Trees, Building, ShieldCheck, Zap } from 'lucide-react';
+import { ArrowRight, Users, Award, Clock, CheckCircle } from 'lucide-react';
 import Button from '../components/ui/Button';
 import { ServiceCard, ProjectCard } from '../components/ui/Card';
 import AnimatedSection from '../components/ui/AnimatedSection';
 import { useTranslation } from 'react-i18next';
 import Testimonials from '../components/Testimonials';
 import BlogSection from '../components/BlogSection';
-import TeamSection from '../components/TeamSection';
 import ProjectGallery from '../components/ProjectGallery';
 import StickyCTA from '../components/StickyCTA';
 import Alramadi from '../assets/Alramadi.png';
@@ -85,7 +84,7 @@ const HomePage = () => {
                   {t('homepage.aboutText2')}
                 </p>
                 <div className="text-2xl font-bold text-gradient mb-6">
-                  {t('homepage.aboutSlogan')}
+                 High Quality. Guarantee. Excellent Local Manufacturer
                 </div>
                 <div className="grid grid-cols-3 gap-6">
                   <div className="text-center group">
@@ -222,9 +221,6 @@ const HomePage = () => {
 
       {/* Testimonials Section */}
       <Testimonials />
-
-      {/* Team Section */}
-      <TeamSection />
 
       {/* Blog/News Section */}
       <BlogSection />

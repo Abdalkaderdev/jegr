@@ -94,7 +94,7 @@ const AboutPage = () => {
         <div className="container-custom text-center">
           <AnimatedSection animation="fade-in">
             <h1 className="text-4xl font-bold mb-4 text-orange-600">{t('about.title')}</h1>
-            <p className="text-lg font-semibold text-orange-400 mb-6 tracking-widest">STRONG. ELEGANT.</p>
+            <p className="text-lg font-bold text-orange-500 mb-6 tracking-widest">High Quality. Guarantee. Excellent Local Manufacturer</p>
           </AnimatedSection>
         </div>
       </section>
@@ -163,8 +163,6 @@ const AboutPage = () => {
           </div>
         </div>
       </section>
-
-      <TeamSection />
 
       {/* Timeline Section */}
       <section className="py-20 bg-white">
