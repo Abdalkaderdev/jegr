@@ -93,9 +93,8 @@ const AboutPage = () => {
       >
         <div className="container-custom text-center">
           <AnimatedSection animation="fade-in">
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
-              {t('aboutPage.title')}
-            </h1>
+            <h1 className="text-4xl font-bold mb-4 text-orange-600">{t('about.title')}</h1>
+            <p className="text-lg font-semibold text-orange-400 mb-6 tracking-widest">STRONG. ELEGANT.</p>
           </AnimatedSection>
         </div>
       </section>

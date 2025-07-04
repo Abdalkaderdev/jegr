@@ -49,9 +49,9 @@ const Navbar = () => {
     >
       <div className="container-custom">
         <div className="flex justify-between h-16 items-center">
-          <div className="flex items-center">
+          <div className="flex items-center h-32">
             <Link to="/" className="flex items-center space-x-2 group">
-              <img src={logo} alt="Company Logo" className="h-10 w-auto" />
+              <img src={logo} alt="Company Logo" className="h-28 w-auto -mt-2" />
             </Link>
           </div>
 

@@ -11,7 +11,7 @@ const Footer = () => {
     <footer className="bg-gray-900 text-white py-8 mt-12">
       <div className="container-custom flex flex-col md:flex-row items-center justify-between">
         <div className="mb-4 md:mb-0 flex items-center space-x-2">
-          <img src={logo} alt="Company Logo" className="h-8 w-auto" />
+          <img src={logo} alt="Company Logo" className="h-20 w-auto mt-2" />
           <span className="font-bold text-lg">{t('footer.company')}</span>
           <span className="ml-2 text-gray-400">&copy; {new Date().getFullYear()} {t('footer.rightsShort', 'All rights reserved.')}</span>
         </div>

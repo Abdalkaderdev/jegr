@@ -10,6 +10,7 @@ import BlogSection from '../components/BlogSection';
 import TeamSection from '../components/TeamSection';
 import ProjectGallery from '../components/ProjectGallery';
 import StickyCTA from '../components/StickyCTA';
+import Alramadi from '../assets/Alramadi.png';
 
 const HomePage = () => {
   const { t } = useTranslation();
@@ -38,11 +39,14 @@ const HomePage = () => {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative h-[70vh] md:h-[80vh] flex items-center justify-center overflow-hidden">
         <div 
-          className="hero-background absolute inset-0 bg-cover bg-center bg-no-repeat"
+          className="hero-background absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://images.pexels.com/photos/159306/construction-site-build-construction-work-159306.jpeg?auto=compress&cs=tinysrgb&w=1600)'
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${Alramadi})`,
+            backgroundPosition: 'center',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
           }}
         />
         <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4">
