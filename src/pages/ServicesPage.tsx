@@ -17,6 +17,7 @@ import signIcon from '../assets/sign.png';
 import signalIcon from '../assets/signal.png';
 import lightPoleBannerIcon from '../assets/light-pole-banner.png';
 import industrialBasaltIcon from '../assets/ChatGPT Image Jul 4, 2025, 05_54_34 PM.png';
+import HeroServiceImg from '../assets/IMG_6097.jpeg';
 
 export const iconMap: Record<string, React.ReactNode> = {
   // Main categories
@@ -78,9 +79,9 @@ const ServicesPage = () => {
     <>
       {/* Hero Section */}
       <section 
-        className="relative py-24 bg-cover bg-center bg-no-repeat"
+        className="relative py-24 min-h-[400px] md:min-h-[600px] bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://images.pexels.com/photos/159306/construction-site-build-construction-work-159306.jpeg?auto=compress&cs=tinysrgb&w=1600)'
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${HeroServiceImg})`
         }}
       >
         <div className="container-custom text-center">

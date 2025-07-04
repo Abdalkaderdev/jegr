@@ -14,6 +14,7 @@ import parkImg from '../assets/park.png';
 import zaitonPlusImg from '../assets/zaiton plus.png';
 import anbarImg from '../assets/anbar.png';
 import northImg from '../assets/north.png';
+import HeroProjectImg from '../assets/IMG_6001.png';
 
 const ProjectsPage = () => {
   const { t } = useTranslation();
@@ -72,7 +73,7 @@ const ProjectsPage = () => {
       <section 
         className="relative py-24 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://images.pexels.com/photos/2539462/pexels-photo-2539462.jpeg?auto=compress&cs=tinysrgb&w=1600)'
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${HeroProjectImg})`
         }}
       >
         <div className="container-custom text-center">
