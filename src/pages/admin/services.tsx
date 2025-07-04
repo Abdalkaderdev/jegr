@@ -7,7 +7,7 @@ import RichTextEditor from '../../components/ui/RichTextEditor';
 import ImageGalleryInput from '../../components/ui/ImageGalleryInput';
 import Papa from 'papaparse';
 import { useHotkeys } from 'react-hotkeys-hook';
-import servicesCategories from '../../../api/servicesCategories.json';
+import servicesCategories from '../../../src/data/servicesCategories.json';
 
 interface Service {
   _id: string;
@@ -324,12 +324,13 @@ const AdminServices: React.FC = () => {
                 required
               >
                 <option value="">Select a category</option>
-                {Object.entries(servicesCategories).map(([main, subs]) => [
-                  <optgroup key={main} label={main} />,
-                  (subs as string[]).map(sub => (
-                    <option key={sub} value={sub}>{sub}</option>
-                  ))
-                ])}
+                {Object.entries(servicesCategories).map(([main, subs]) => (
+                  <optgroup key={main} label={main}>
+                    {Object.keys((subs as any).subcategories).map(sub => (
+                      <option key={sub} value={sub}>{sub}</option>
+                    ))}
+                  </optgroup>
+                ))}
               </select>
             </div>
             <div className="flex space-x-2">

@@ -403,15 +403,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <Testimonials />
-
-      {/* Blog/News Section */}
-      <BlogSection />
-
-      {/* Project Gallery Section */}
-      <ProjectGallery />
-
       {/* Contact Section */}
       <section className="py-20 bg-gray-900 text-white">
         <div className="container-custom">
