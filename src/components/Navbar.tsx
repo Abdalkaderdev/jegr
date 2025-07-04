@@ -49,11 +49,11 @@ const Navbar = () => {
       animate={{ y: 0, opacity: 1 }}
       transition={{ type: 'spring', stiffness: 120, damping: 18 }}
     >
-      <div className="container-custom">
+      <div className="container-custom px-4">
         <div className="flex justify-between h-16 items-center">
           <div className="flex items-center h-32">
             <Link to="/" className="flex items-center space-x-2 group">
-              <img src={logo} alt="Company Logo" className="h-28 w-auto -mt-2" />
+              <img src={logo} alt="Company Logo" className="h-20 md:h-28 w-auto -mt-2" />
             </Link>
           </div>
 
@@ -160,7 +160,7 @@ const Navbar = () => {
         {/* Mobile Navigation */}
         <motion.div
           className={`md:hidden transition-all duration-300 ease-in-out ${
-            isOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
+            isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
           } overflow-hidden`}
           initial={false}
           animate={isOpen ? { opacity: 1, y: 0 } : { opacity: 0, y: -16 }}

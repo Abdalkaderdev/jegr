@@ -100,7 +100,7 @@ const AboutPage = () => {
 
       {/* Company Story */}
       <section className="py-20 bg-white">
-        <div className="container-custom">
+        <div className="container-custom px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <AnimatedSection animation="slide-in-left">
               <div>
@@ -130,7 +130,7 @@ const AboutPage = () => {
 
       {/* Values Section */}
       <section className="py-20 bg-gray-50">
-        <div className="container-custom">
+        <div className="container-custom px-4">
           <AnimatedSection animation="fade-in">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Values</h2>
@@ -165,7 +165,7 @@ const AboutPage = () => {
 
       {/* Visual Timeline Section */}
       <section className="py-20 bg-white">
-        <div className="container-custom">
+        <div className="container-custom px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Journey</h2>
             <p className="text-lg text-gray-700 max-w-2xl mx-auto">
@@ -211,7 +211,7 @@ const AboutPage = () => {
                   `}
                 >
                   {/* Content box */}
-                  <div className={`w-1/2 flex justify-center`}>
+                  <div className={`w-1/2 flex justify-center max-md:w-full max-md:justify-center`}> {/* Make timeline item full width on mobile */}
                     <div className={`bg-white p-8 rounded-lg shadow-lg border border-gray-100 max-w-md w-full
                       ${idx % 2 === 0 ? 'animate-fade-in-left' : 'animate-fade-in-right'} animate-scale-in
                     `}>
@@ -228,18 +228,7 @@ const AboutPage = () => {
                     {item.icon}
                   </div>
                   {/* Spacer for alignment on desktop */}
-                  <div className="w-1/2 max-md:hidden"></div>
-                  {/* Mobile view: always show below the dot */}
-                  <div className="w-full md:hidden mt-8">
-                    <div className="bg-white p-8 rounded-lg shadow-lg border border-gray-100 max-w-md w-full mx-auto animate-fade-in-up animate-scale-in">
-                      <div className="flex items-center mb-2 justify-center">
-                        <span className="animate-fade-in-stagger" style={{ '--delay': '0ms' } as React.CSSProperties}>{item.icon}</span>
-                        <span className="ml-3 text-2xl font-bold text-orange-600 animate-fade-in-stagger" style={{ '--delay': '100ms' } as React.CSSProperties}>{item.year}</span>
-                      </div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-2 text-center animate-fade-in-stagger" style={{ '--delay': '200ms' } as React.CSSProperties}>{item.title}</h3>
-                      <p className="text-gray-700 text-center animate-fade-in-stagger" style={{ '--delay': '300ms' } as React.CSSProperties}>{item.description}</p>
-                    </div>
-                  </div>
+                  <div className="w-1/2 max-md:hidden"></div> {/* Only show spacer on desktop */}
                 </div>
               ))}
             </div>
@@ -251,7 +240,7 @@ const AboutPage = () => {
 
       {/* Stats Section */}
       <section className="py-20 bg-orange-600">
-        <div className="container-custom">
+        <div className="container-custom px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center text-white">
             <div className="group">
               <div className="stats-counter mb-2 group-hover:scale-110 transition-transform duration-300">322</div>

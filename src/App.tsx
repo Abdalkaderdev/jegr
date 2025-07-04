@@ -20,7 +20,7 @@ const AdminHelp = lazy(() => import('./pages/admin/help'));
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-white overflow-x-hidden">
         <Navbar />
         <main>
           <Routes>
