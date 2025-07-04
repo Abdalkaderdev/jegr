@@ -1,10 +1,44 @@
 import React, { useEffect, useState } from 'react';
-import { Trees, Loader as Road, Building, CheckCircle, Zap, ShieldCheck, ArrowRight, Star } from 'lucide-react';
+import { Trees, Loader as Road, Building, CheckCircle, Zap, ShieldCheck, ArrowRight, Star, Lamp, Landmark, Trash2, Award, Users, Sun, Umbrella, Gamepad2, Shield, TrafficCone, RailSymbol, Home } from 'lucide-react';
 import { ServiceCard } from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import AnimatedSection from '../components/ui/AnimatedSection';
 import { useTranslation } from 'react-i18next';
 import ServiceDetailsModal from '../components/ServiceDetailsModal';
+import servicesCategories from '../data/servicesCategories.json';
+import { Link } from 'react-router-dom';
+import streetLight from '../assets/street-light.png';
+import treesIcon from '../assets/trees.png';
+import benchIcon from '../assets/bench.png';
+import bronzeIcon from '../assets/bronze.png';
+import stallIcon from '../assets/stall.png';
+import railingIcon from '../assets/railing.png';
+import signIcon from '../assets/sign.png';
+import signalIcon from '../assets/signal.png';
+import lightPoleBannerIcon from '../assets/light-pole-banner.png';
+import industrialBasaltIcon from '../assets/ChatGPT Image Jul 4, 2025, 05_54_34 PM.png';
+
+export const iconMap: Record<string, React.ReactNode> = {
+  // Main categories
+  'Light Poles': <img src={streetLight} alt="Light Poles" className="h-6 w-6 inline-block mr-2" />,
+  'Landscape': <Trees className="h-6 w-6 text-orange-600 inline-block mr-2" />,
+  'Urban Design': <Landmark className="h-6 w-6 text-orange-600 inline-block mr-2" />,
+  // Subcategories
+  'Decorative Light Poles': <img src={lightPoleBannerIcon} alt="Decorative Light Poles" className="h-5 w-5 inline-block mr-2" />,
+  'Modern Light Poles': <img src={streetLight} alt="Modern Light Poles" className="h-5 w-5 inline-block mr-2" />,
+  'Landscaping': <img src={treesIcon} alt="Landscaping" className="h-5 w-5 inline-block mr-2" />,
+  'Benches': <img src={benchIcon} alt="Benches" className="h-5 w-5 inline-block mr-2" />,
+  'Trash Cans': <Trash2 className="h-5 w-5 text-orange-400 inline-block mr-2" />,
+  'Stamp Concrete': <img src={bronzeIcon} alt="Stamp Concrete" className="h-5 w-5 inline-block mr-2" />,
+  'Industrial Basalt': <img src={industrialBasaltIcon} alt="Industrial Basalt" className="h-5 w-5 inline-block mr-2" />,
+  'Kerb Stone': <img src={bronzeIcon} alt="Kerb Stone" className="h-5 w-5 inline-block mr-2" />,
+  'Booths': <img src={stallIcon} alt="Booths" className="h-5 w-5 inline-block mr-2" />,
+  'Games and Outdoor Training Equipment': <Gamepad2 className="h-5 w-5 text-orange-400 inline-block mr-2" />,
+  'Shades': <Umbrella className="h-5 w-5 text-orange-400 inline-block mr-2" />,
+  'Guard Rail': <img src={railingIcon} alt="Guard Rail" className="h-5 w-5 inline-block mr-2" />,
+  'Road Signs': <img src={signIcon} alt="Road Signs" className="h-5 w-5 inline-block mr-2" />,
+  'Traffic Lights': <img src={signalIcon} alt="Traffic Lights" className="h-5 w-5 inline-block mr-2" />,
+};
 
 const ServicesPage = () => {
   const { t } = useTranslation();
@@ -85,6 +119,39 @@ const ServicesPage = () => {
         </div>
       </section>
 
+      {/* Structured Categories List */}
+      <section className="py-10 bg-white">
+        <div className="container-custom">
+          <h2 className="text-2xl font-bold mb-6 text-orange-600">Service Categories</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+            {Object.entries(servicesCategories).map(([category, catData], idx) => (
+              <AnimatedSection key={category} animation="scale-in" delay={idx * 100}>
+                <div className="relative bg-white/70 backdrop-blur-lg rounded-2xl shadow-xl border border-orange-100 p-8 group transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
+                  <Link to={`/services/category/${category}`} className="flex items-center mb-4 gap-3 group-hover:text-orange-600 transition-colors duration-300">
+                    <span className="flex items-center justify-center w-14 h-14 rounded-xl bg-orange-50 group-hover:bg-orange-100 shadow-md transition-all duration-300">
+                      {iconMap[category]}
+                    </span>
+                    <span className="text-2xl font-bold">{category}</span>
+                  </Link>
+                  <div className="flex flex-wrap gap-2 mt-2">
+                    {Object.keys(catData.subcategories).map((sub, subIdx) => (
+                      <Link
+                        key={sub}
+                        to={`/services/category/${category}/${sub}`}
+                        className="flex items-center px-3 py-1 rounded-full bg-orange-100 text-orange-700 text-sm font-medium shadow hover:bg-orange-200 hover:text-orange-900 transition-all duration-200 animate-fade-in"
+                        style={{ animationDelay: `${subIdx * 60}ms` }}
+                      >
+                        <span className="mr-1">{iconMap[sub]}</span>{sub}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Services Grid */}
       <section className="py-20 bg-white">
         <div className="container-custom">
@@ -101,10 +168,9 @@ const ServicesPage = () => {
                   delay={index * 100}
                 >
                   <ServiceCard
-                    icon={null}
+                    icon={iconMap[service.category] || <Star className="h-6 w-6 text-orange-600" />}
                     title={service.name}
                     description={service.description}
-                    onClick={() => { setSelectedService(service); setModalOpen(true); }}
                   />
                 </AnimatedSection>
               ))}
@@ -176,8 +242,8 @@ const ServicesPage = () => {
               {t('servicesPage.ctaDesc')}
             </p>
             <Button 
-              as="a"
-              href="/contact"
+              as={Link}
+              to="/contact"
               variant="secondary"
               size="large"
               icon={ArrowRight}

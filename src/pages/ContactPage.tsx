@@ -104,11 +104,10 @@ const ContactPage = () => {
                       <MapPin className="h-6 w-6 text-orange-600" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-1 group-hover:text-orange-600 transition-colors duration-300">{t('contactPage.info.address.company')}</h3>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-1 group-hover:text-orange-600 transition-colors duration-300">Location</h3>
                       <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">
-                        {t('contactPage.info.address.company')}<br />
-                        {t('contactPage.info.address.city')}<br />
-                        {t('contactPage.info.address.building')}
+                        IRAQ- KRG - ERBIL 100M ROAD<br />
+                        OPPOSITE TO ERBIL INTERNATIONAL AIRPORT
                       </p>
                     </div>
                   </div>
@@ -119,26 +118,23 @@ const ContactPage = () => {
                       <Phone className="h-6 w-6 text-orange-600" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-1 group-hover:text-orange-600 transition-colors duration-300">{t('contactPage.info.phone.main')}</h3>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-1 group-hover:text-orange-600 transition-colors duration-300">Phone</h3>
                       <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">
-                        {t('contactPage.info.phone.main')}<br />
-                        {t('contactPage.info.phone.emergency')}<br />
-                        {t('contactPage.info.phone.project')}
+                        <a href="tel:07715554224" className="underline hover:text-orange-500">0771 555 4224</a><br />
+                        <a href="tel:07505554243" className="underline hover:text-orange-500">0750 555 4243</a>
                       </p>
                     </div>
                   </div>
 
-                  {/* Email Addresses */}
+                  {/* Email Address */}
                   <div className="flex items-start space-x-4 group">
                     <div className="flex-shrink-0 w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center group-hover:bg-orange-200 group-hover:scale-110 transition-all duration-300">
                       <Mail className="h-6 w-6 text-orange-600" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-1 group-hover:text-orange-600 transition-colors duration-300">{t('contactPage.info.email.general')}</h3>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-1 group-hover:text-orange-600 transition-colors duration-300">Email</h3>
                       <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">
-                        {t('contactPage.info.email.general')}<br />
-                        {t('contactPage.info.email.quotes')}<br />
-                        {t('contactPage.info.email.support')}
+                        <a href="mailto:CONTACT@JEGRJALALCOMPANY.COM" className="underline hover:text-orange-500">CONTACT@JEGRJALALCOMPANY.COM</a>
                       </p>
                     </div>
                   </div>

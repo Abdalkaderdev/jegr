@@ -7,9 +7,10 @@ import RichTextEditor from '../../components/ui/RichTextEditor';
 import ImageGalleryInput from '../../components/ui/ImageGalleryInput';
 import Papa from 'papaparse';
 import { useHotkeys } from 'react-hotkeys-hook';
+import servicesCategories from '../../../api/servicesCategories.json';
 
 interface Service {
-  id: number;
+  _id: string;
   name: string;
   description: string;
   images: string[];
@@ -25,7 +26,7 @@ const AdminServices: React.FC = () => {
   const [services, setServices] = useState<Service[]>([]);
   const [form, setForm] = useState<{ name: string; description: string; images: string[]; category: string }>(emptyForm);
   const [mode, setMode] = useState<FormMode>('add');
-  const [editingId, setEditingId] = useState<number | null>(null);
+  const [editingId, setEditingId] = useState<string | null>(null);
   const [showForm, setShowForm] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -33,7 +34,7 @@ const AdminServices: React.FC = () => {
   const [filter, setFilter] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 5;
-  const [selected, setSelected] = useState<number[]>([]);
+  const [selected, setSelected] = useState<string[]>([]);
   const [detailsOpen, setDetailsOpen] = useState(false);
   const [detailsService, setDetailsService] = useState<Service | null>(null);
   const [confirmOpen, setConfirmOpen] = useState(false);
@@ -44,7 +45,7 @@ const AdminServices: React.FC = () => {
   // Fetch services on mount
   useEffect(() => {
     setLoading(true);
-    fetch('/api/services.json')
+    fetch(API_URL)
       .then((res) => res.json())
       .then((data) => {
         setServices(data);
@@ -60,6 +61,10 @@ const AdminServices: React.FC = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setForm({ ...form, category: e.target.value });
+  };
+
   const handleAddClick = () => {
     setForm(emptyForm);
     setMode('add');
@@ -70,22 +75,22 @@ const AdminServices: React.FC = () => {
   const handleEditClick = (service: Service) => {
     setForm({ name: service.name, description: service.description, images: service.images || [], category: service.category });
     setMode('edit');
-    setEditingId(service.id);
+    setEditingId(service._id);
     setShowForm(true);
   };
 
-  const handleDeleteClick = async (id: number) => {
+  const handleDeleteClick = async (_id: string) => {
     setLoading(true);
     setError('');
     try {
       await fetch(API_URL, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id }),
+        body: JSON.stringify({ id: _id }),
       });
-      setServices((prev) => prev.filter((s) => s.id !== id));
+      setServices((prev) => prev.filter((s) => s._id !== _id));
       toast.success('Service deleted successfully');
-      logActivity('Delete', { id });
+      logActivity('Delete', { _id });
     } catch {
       setError('Failed to delete service');
     }
@@ -114,7 +119,7 @@ const AdminServices: React.FC = () => {
           body: JSON.stringify({ id: editingId, ...form }),
         });
         const updated = await res.json();
-        setServices((prev) => prev.map((s) => (s.id === editingId ? updated : s)));
+        setServices((prev) => prev.map((s) => (s._id === editingId ? updated : s)));
         toast.success('Service updated successfully');
         logActivity('Update', updated);
       }
@@ -168,14 +173,14 @@ const AdminServices: React.FC = () => {
       setConfirmOpen(false);
       setLoading(true);
       try {
-        for (const id of selected) {
+        for (const _id of selected) {
           await fetch(API_URL, {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ id }),
+            body: JSON.stringify({ id: _id }),
           });
         }
-        setServices(prev => prev.filter(s => !selected.includes(s.id)));
+        setServices(prev => prev.filter(s => !selected.includes(s._id)));
         setSelected([]);
         toast.success('Deleted selected services');
         logActivity('Bulk Delete', selected);
@@ -310,16 +315,22 @@ const AdminServices: React.FC = () => {
               />
             </div>
             <div>
-              <label className="block text-gray-700 mb-1">Category</label>
-              <input
-                type="text"
+              <label className="block mb-1 font-medium">Category</label>
+              <select
                 name="category"
+                className="form-input w-full mb-4"
                 value={form.category}
-                onChange={handleInputChange}
+                onChange={handleCategoryChange}
                 required
-                className="form-input w-full"
-                placeholder="Category"
-              />
+              >
+                <option value="">Select a category</option>
+                {Object.entries(servicesCategories).map(([main, subs]) => [
+                  <optgroup key={main} label={main} />,
+                  (subs as string[]).map(sub => (
+                    <option key={sub} value={sub}>{sub}</option>
+                  ))
+                ])}
+              </select>
             </div>
             <div className="flex space-x-2">
               <button type="submit" className="btn-primary" disabled={loading}>
@@ -340,7 +351,7 @@ const AdminServices: React.FC = () => {
             <table className="min-w-full table-auto">
               <thead>
                 <tr className="bg-gray-100">
-                  <th className="px-4 py-2"><input type="checkbox" checked={selected.length === paginatedServices.length && paginatedServices.length > 0} onChange={e => setSelected(e.target.checked ? paginatedServices.map(s => s.id) : [])} /></th>
+                  <th className="px-4 py-2"><input type="checkbox" checked={selected.length === paginatedServices.length && paginatedServices.length > 0} onChange={e => setSelected(e.target.checked ? paginatedServices.map(s => s._id) : [])} /></th>
                   <th className="px-4 py-2 text-left">Name</th>
                   <th className="px-4 py-2 text-left">Description</th>
                   <th className="px-4 py-2 text-left">Images</th>
@@ -350,8 +361,8 @@ const AdminServices: React.FC = () => {
               </thead>
               <tbody>
                 {paginatedServices.map((service) => (
-                  <tr key={service.id} className="border-b hover:bg-orange-50 transition-colors">
-                    <td className="px-4 py-2"><input type="checkbox" checked={selected.includes(service.id)} onChange={e => setSelected(e.target.checked ? [...selected, service.id] : selected.filter(id => id !== service.id))} /></td>
+                  <tr key={service._id} className="border-b hover:bg-orange-50 transition-colors">
+                    <td className="px-4 py-2"><input type="checkbox" checked={selected.includes(service._id)} onChange={e => setSelected(e.target.checked ? [...selected, service._id] : selected.filter(id => id !== service._id))} /></td>
                     <td className="px-4 py-2 font-medium text-gray-900 cursor-pointer" onClick={() => { setDetailsService(service); setDetailsOpen(true); }}>{service.name}</td>
                     <td className="px-4 py-2 text-gray-700 max-w-xs truncate">{service.description}</td>
                     <td className="px-4 py-2">
@@ -364,7 +375,7 @@ const AdminServices: React.FC = () => {
                     <td className="px-4 py-2">{service.category}</td>
                     <td className="px-4 py-2 space-x-2">
                       <button className="btn-secondary" onClick={() => handleEditClick(service)} disabled={loading}>Edit</button>
-                      <button className="btn-tertiary" onClick={() => { setConfirmOpen(true); setConfirmAction(() => () => handleDeleteClick(service.id)); }} disabled={loading}>Delete</button>
+                      <button className="btn-tertiary" onClick={() => { setConfirmOpen(true); setConfirmAction(() => () => handleDeleteClick(service._id)); }} disabled={loading}>Delete</button>
                     </td>
                   </tr>
                 ))}

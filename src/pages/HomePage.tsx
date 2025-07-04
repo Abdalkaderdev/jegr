@@ -137,7 +137,7 @@ const HomePage = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {services.slice(0, 6).map((service: any, index: number) => (
                 <AnimatedSection 
-                  key={service.id}
+                  key={service._id}
                   animation="scale-in" 
                   delay={index * 100}
                 >
@@ -187,7 +187,7 @@ const HomePage = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {projects.slice(0, 3).map((project: any, index: number) => (
                 <AnimatedSection 
-                  key={project.id}
+                  key={project._id}
                   animation="fade-in" 
                   delay={index * 150}
                 >

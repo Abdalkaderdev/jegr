@@ -4,12 +4,14 @@ import { Menu, X, Hammer } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import logo from '../assets/IMG_9929.png';
+import servicesCategories from '../../api/servicesCategories.json';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const { t, i18n } = useTranslation();
+  const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
 
   const navItems = [
     { name: t('navbar.home'), path: '/' },
@@ -58,25 +60,78 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
             {navItems.map((item) => (
-              <motion.div
-                key={item.path}
-                whileHover={{ y: -2 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                className="relative"
-              >
-                <Link
-                  to={item.path}
-                  className={`nav-link px-4 py-2 rounded-lg font-medium transition-all duration-200 ${isActive(item.path) ? 'active text-orange-600' : 'text-gray-700 hover:text-orange-600'}`}
+              item.name === t('navbar.services') ? (
+                <motion.div
+                  key={item.path}
+                  whileHover={{ y: -2 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                  className="relative group"
                 >
-                  {item.name}
-                  <motion.span
-                    layoutId="navbar-underline"
-                    className="absolute left-0 -bottom-1 w-full h-0.5 bg-orange-600 rounded"
-                    style={{ opacity: isActive(item.path) ? 1 : 0 }}
-                    transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                  />
-                </Link>
-              </motion.div>
+                  <Link
+                    to={item.path}
+                    className={`nav-link px-4 py-2 rounded-lg font-medium transition-all duration-200 ${isActive(item.path) ? 'active text-orange-600' : 'text-gray-700 hover:text-orange-600'}`}
+                  >
+                    {item.name}
+                    <motion.span
+                      layoutId="navbar-underline"
+                      className="absolute left-0 -bottom-1 w-full h-0.5 bg-orange-600 rounded"
+                      style={{ opacity: isActive(item.path) ? 1 : 0 }}
+                      transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                    />
+                  </Link>
+                  {/* Dropdown */}
+                  <div className="absolute left-0 mt-2 w-56 bg-white rounded-lg shadow-lg opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity z-50">
+                    <ul className="py-2">
+                      {Object.entries(servicesCategories).map(([cat, subs]) => (
+                        <li
+                          key={cat}
+                          className="relative group/category"
+                          onMouseEnter={() => setHoveredCategory(cat)}
+                          onMouseLeave={() => setHoveredCategory(null)}
+                        >
+                          <Link to={`/services?category=${encodeURIComponent(cat)}`} className="block px-4 py-2 text-gray-800 font-semibold hover:bg-orange-50 hover:text-orange-600 transition-colors">
+                            {cat}
+                          </Link>
+                          {/* Submenu */}
+                          {hoveredCategory === cat && (
+                            <div className="absolute right-full top-0 mr-2 w-56 bg-white rounded-lg shadow-lg z-50">
+                              <ul className="py-2">
+                                {(subs as string[]).map(sub => (
+                                  <li key={sub}>
+                                    <Link to={`/services?category=${encodeURIComponent(sub)}`} className="block px-4 py-2 text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors">
+                                      {sub}
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </motion.div>
+              ) : (
+                <motion.div
+                  key={item.path}
+                  whileHover={{ y: -2 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                  className="relative"
+                >
+                  <Link
+                    to={item.path}
+                    className={`nav-link px-4 py-2 rounded-lg font-medium transition-all duration-200 ${isActive(item.path) ? 'active text-orange-600' : 'text-gray-700 hover:text-orange-600'}`}
+                  >
+                    {item.name}
+                    <motion.span
+                      layoutId="navbar-underline"
+                      className="absolute left-0 -bottom-1 w-full h-0.5 bg-orange-600 rounded"
+                      style={{ opacity: isActive(item.path) ? 1 : 0 }}
+                      transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                    />
+                  </Link>
+                </motion.div>
+              )
             ))}
             <motion.button
               whileTap={{ scale: 0.96 }}

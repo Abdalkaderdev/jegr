@@ -7,6 +7,8 @@ import AboutPage from './pages/AboutPage';
 import ServicesPage from './pages/ServicesPage';
 import ProjectsPage from './pages/ProjectsPage';
 import ContactPage from './pages/ContactPage';
+import ServiceCategoryPage from './pages/ServiceCategoryPage';
+import ServiceSubcategoryPage from './pages/ServiceSubcategoryPage';
 
 const AdminLogin = lazy(() => import('./pages/admin/index'));
 const AdminDashboard = lazy(() => import('./pages/admin/dashboard'));
@@ -27,6 +29,8 @@ function App() {
             <Route path="/services" element={<ServicesPage />} />
             <Route path="/projects" element={<ProjectsPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/services/category/:categoryName" element={<ServiceCategoryPage />} />
+            <Route path="/services/category/:categoryName/:subCategoryName" element={<ServiceSubcategoryPage />} />
             {/* Admin routes */}
             <Route path="/admin" element={
               <Suspense fallback={<div className='p-8 text-center'>Loading...</div>}>

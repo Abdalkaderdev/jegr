@@ -1,0 +1,32 @@
+{
+  "Light Poles": {
+    "description": "Jegr Jalal specializes in manufacturing durable, high-quality light poles designed to enhance both function and aesthetics in public and private spaces.",
+    "subcategories": {
+      "Decorative Light Poles": "Elegant, custom-designed poles that blend with architectural environments.",
+      "Modern Light Poles": "Sleek and functional designs suited for modern urban infrastructure.",
+      "Standard Light Poles": "Reliable and robust poles used for general street and area lighting."
+    }
+  },
+  "Landscape": {
+    "description": "Complete landscaping product line designed to support urban beautification and outdoor functionality.",
+    "subcategories": {
+      "Landscaping": "Soft and hardscape solutions tailored to client needs.",
+      "Benches": "Comfortable and durable seating for parks, streets, and public areas.",
+      "Trash Cans": "Stylish and practical waste containers for urban cleanliness.",
+      "Stamp Concrete": "Decorative concrete finishes for pavements, plazas, and walkways.",
+      "Industrial Basalt": "Strong basalt stone for heavy-duty flooring and outdoor surfaces.",
+      "Kerb Stone": "Essential for road and landscape edge definition.",
+      "Games and Outdoor Training Equipment": "Safe and durable outdoor recreational and fitness installations.",
+      "Booths": "Functional outdoor booths for commercial and public use.",
+      "Shades": "Weather-resistant shades for seating areas, walkways, and parks."
+    }
+  },
+  "Urban Design": {
+    "description": "Urban furniture and infrastructure elements that enhance safety, navigation, and visual harmony.",
+    "subcategories": {
+      "Guard Rail": "Metal safety barriers for roads, highways, and pedestrian areas.",
+      "Road Signs": "Customized road signage for traffic control and navigation.",
+      "Traffic Lights": "Modern traffic signal systems for urban and intersection control."
+    }
+  }
+} 

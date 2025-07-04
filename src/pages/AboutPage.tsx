@@ -236,6 +236,18 @@ const AboutPage = () => {
           </AnimatedSection>
         </div>
       </section>
+
+      {/* Contact & Location Section */}
+      <section className="py-12 bg-gray-50">
+        <div className="container-custom text-center">
+          <h2 className="text-3xl font-bold text-orange-600 mb-4">Contact & Location</h2>
+          <div className="flex flex-col items-center space-y-2 text-lg text-gray-700">
+            <span><strong>Phone:</strong> <a href="tel:07715554224" className="underline hover:text-orange-500">0771 555 4224</a>, <a href="tel:07505554243" className="underline hover:text-orange-500">0750 555 4243</a></span>
+            <span><strong>Location:</strong> IRAQ- KRG - ERBIL 100M ROAD - OPPOSITE TO ERBIL INTERNATIONAL AIRPORT</span>
+            <span><strong>Email:</strong> <a href="mailto:CONTACT@JEGRJALALCOMPANY.COM" className="underline hover:text-orange-500">CONTACT@JEGRJALALCOMPANY.COM</a></span>
+          </div>
+        </div>
+      </section>
     </>
   );
 };

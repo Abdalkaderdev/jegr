@@ -9,7 +9,7 @@ import Papa from 'papaparse';
 import { useHotkeys } from 'react-hotkeys-hook';
 
 interface Project {
-  id: number;
+  _id: string;
   name: string;
   description: string;
   images: string[];
@@ -25,7 +25,7 @@ const AdminProjects: React.FC = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [form, setForm] = useState<{ name: string; description: string; images: string[]; category: string }>(emptyForm);
   const [mode, setMode] = useState<FormMode>('add');
-  const [editingId, setEditingId] = useState<number | null>(null);
+  const [editingId, setEditingId] = useState<string | null>(null);
   const [showForm, setShowForm] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -33,7 +33,7 @@ const AdminProjects: React.FC = () => {
   const [filter, setFilter] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 5;
-  const [selected, setSelected] = useState<number[]>([]);
+  const [selected, setSelected] = useState<string[]>([]);
   const [detailsOpen, setDetailsOpen] = useState(false);
   const [detailsProject, setDetailsProject] = useState<Project | null>(null);
   const [confirmOpen, setConfirmOpen] = useState(false);
@@ -43,7 +43,7 @@ const AdminProjects: React.FC = () => {
   // Fetch projects on mount
   useEffect(() => {
     setLoading(true);
-    fetch('/api/projects.json')
+    fetch(API_URL)
       .then((res) => res.json())
       .then((data) => {
         setProjects(data);
@@ -69,22 +69,22 @@ const AdminProjects: React.FC = () => {
   const handleEditClick = (project: Project) => {
     setForm({ name: project.name, description: project.description, images: project.images || [], category: project.category });
     setMode('edit');
-    setEditingId(project.id);
+    setEditingId(project._id);
     setShowForm(true);
   };
 
-  const handleDeleteClick = async (id: number) => {
+  const handleDeleteClick = async (_id: string) => {
     setLoading(true);
     setError('');
     try {
       await fetch(API_URL, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id }),
+        body: JSON.stringify({ id: _id }),
       });
-      setProjects((prev) => prev.filter((p) => p.id !== id));
+      setProjects((prev) => prev.filter((p) => p._id !== _id));
       toast.success('Project deleted successfully');
-      logActivity('Delete', { id });
+      logActivity('Delete', { _id });
     } catch {
       setError('Failed to delete project');
     }
@@ -113,9 +113,9 @@ const AdminProjects: React.FC = () => {
           body: JSON.stringify({ id: editingId, ...form }),
         });
         const updated = await res.json();
-        setProjects((prev) => prev.map((p) => (p.id === editingId ? updated : p)));
+        setProjects((prev) => prev.map((p) => (p._id === editingId ? updated : p)));
         toast.success('Project updated successfully');
-        logActivity('Update', { id: editingId, ...form });
+        logActivity('Update', updated);
       }
       setShowForm(false);
       setForm(emptyForm);
@@ -167,14 +167,14 @@ const AdminProjects: React.FC = () => {
       setConfirmOpen(false);
       setLoading(true);
       try {
-        for (const id of selected) {
+        for (const _id of selected) {
           await fetch(API_URL, {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ id }),
+            body: JSON.stringify({ id: _id }),
           });
         }
-        setProjects(prev => prev.filter(p => !selected.includes(p.id)));
+        setProjects(prev => prev.filter(p => !selected.includes(p._id)));
         setSelected([]);
         toast.success('Deleted selected projects');
         logActivity('Bulk Delete', selected);
@@ -331,7 +331,7 @@ const AdminProjects: React.FC = () => {
             <table className="min-w-full table-auto">
               <thead>
                 <tr className="bg-gray-100">
-                  <th className="px-4 py-2"><input type="checkbox" checked={selected.length === paginatedProjects.length && paginatedProjects.length > 0} onChange={e => setSelected(e.target.checked ? paginatedProjects.map(p => p.id) : [])} /></th>
+                  <th className="px-4 py-2"><input type="checkbox" checked={selected.length === paginatedProjects.length && paginatedProjects.length > 0} onChange={e => setSelected(e.target.checked ? paginatedProjects.map(p => p._id) : [])} /></th>
                   <th className="px-4 py-2 text-left">Name</th>
                   <th className="px-4 py-2 text-left">Description</th>
                   <th className="px-4 py-2 text-left">Images</th>
@@ -341,8 +341,8 @@ const AdminProjects: React.FC = () => {
               </thead>
               <tbody>
                 {paginatedProjects.map((project) => (
-                  <tr key={project.id} className="border-b hover:bg-orange-50 transition-colors">
-                    <td className="px-4 py-2"><input type="checkbox" checked={selected.includes(project.id)} onChange={e => setSelected(e.target.checked ? [...selected, project.id] : selected.filter(id => id !== project.id))} /></td>
+                  <tr key={project._id} className="border-b hover:bg-orange-50 transition-colors">
+                    <td className="px-4 py-2"><input type="checkbox" checked={selected.includes(project._id)} onChange={e => setSelected(e.target.checked ? [...selected, project._id] : selected.filter(id => id !== project._id))} /></td>
                     <td className="px-4 py-2 font-medium text-gray-900 cursor-pointer" onClick={() => { setDetailsProject(project); setDetailsOpen(true); }}>{project.name}</td>
                     <td className="px-4 py-2 text-gray-700 max-w-xs truncate">{project.description}</td>
                     <td className="px-4 py-2">
@@ -355,7 +355,7 @@ const AdminProjects: React.FC = () => {
                     <td className="px-4 py-2">{project.category}</td>
                     <td className="px-4 py-2 space-x-2">
                       <button className="btn-secondary" onClick={() => handleEditClick(project)} disabled={loading}>Edit</button>
-                      <button className="btn-tertiary" onClick={() => { setConfirmOpen(true); setConfirmAction(() => () => handleDeleteClick(project.id)); }} disabled={loading}>Delete</button>
+                      <button className="btn-tertiary" onClick={() => { setConfirmOpen(true); setConfirmAction(() => () => handleDeleteClick(project._id)); }} disabled={loading}>Delete</button>
                     </td>
                   </tr>
                 ))}

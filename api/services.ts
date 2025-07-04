@@ -1,53 +1,37 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
-import { promises as fs } from 'fs';
-import path from 'path';
+import { neon } from '@neondatabase/serverless';
 
-const dataFile = path.join(__dirname, 'services.json');
-
-async function readData() {
-  try {
-    const data = await fs.readFile(dataFile, 'utf-8');
-    return JSON.parse(data);
-  } catch {
-    return [];
-  }
-}
-
-async function writeData(data: any) {
-  await fs.writeFile(dataFile, JSON.stringify(data, null, 2));
-}
+const sql = neon(process.env.DATABASE_URL!);
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   if (req.method === 'OPTIONS') return res.status(200).end();
 
-  let services = await readData();
-
   if (req.method === 'GET') {
-    return res.status(200).json(services);
+    const result = await sql('SELECT * FROM services ORDER BY created_at DESC');
+    return res.status(200).json(result);
   }
 
   if (req.method === 'POST') {
-    const { name, description, imageUrl } = req.body;
-    const newService = { id: Date.now(), name, description, imageUrl };
-    services.unshift(newService);
-    await writeData(services);
-    return res.status(201).json(newService);
+    const { name, description, images = [], category = '' } = req.body;
+    const result = await sql(
+      'INSERT INTO services (name, description, images, category) VALUES ($1, $2, $3, $4) RETURNING *',
+      [name, description, images, category]
+    );
+    return res.status(201).json(result[0]);
   }
 
   if (req.method === 'PUT') {
-    const { id, name, description, imageUrl } = req.body;
-    services = services.map((s: any) => s.id === id ? { ...s, name, description, imageUrl } : s);
-    await writeData(services);
-    return res.status(200).json({ id, name, description, imageUrl });
+    const { id, name, description, images = [], category = '' } = req.body;
+    const result = await sql(
+      'UPDATE services SET name=$1, description=$2, images=$3, category=$4 WHERE id=$5 RETURNING *',
+      [name, description, images, category, id]
+    );
+    return res.status(200).json(result[0]);
   }
 
   if (req.method === 'DELETE') {
     const { id } = req.body;
-    services = services.filter((s: any) => s.id !== id);
-    await writeData(services);
+    await sql('DELETE FROM services WHERE id=$1', [id]);
     return res.status(204).end();
   }
 
