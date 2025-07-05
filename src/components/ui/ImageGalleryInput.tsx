@@ -45,7 +45,7 @@ const ImageGalleryInput: React.FC<ImageGalleryInputProps> = ({ images, onChange,
                 <Draggable key={img} draggableId={img} index={idx}>
                   {(prov: DraggableProvided) => (
                     <div ref={prov.innerRef} {...prov.draggableProps} {...prov.dragHandleProps} className="relative group">
-                      <img src={img} alt={`Gallery ${idx}`} className="h-20 w-32 object-cover rounded shadow border-2 border-gray-200" />
+                      <img src={img} alt={`Gallery ${idx}`} className="h-20 w-32 object-cover rounded shadow border-2 border-gray-200" loading="lazy" />
                       <button type="button" onClick={() => handleRemove(idx)} className="absolute top-1 right-1 bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center opacity-80 hover:opacity-100">&times;</button>
                     </div>
                   )}

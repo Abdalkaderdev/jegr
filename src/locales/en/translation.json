@@ -21,7 +21,13 @@
     "about": "About",
     "services": "Services",
     "projects": "Projects",
-    "contact": "Contact"
+    "contact": "Contact",
+    "phone": "Phone",
+    "location": "Location",
+    "email": "Email",
+    "phoneValue": "0771 555 4224\n0750 555 4243",
+    "locationValue": "IRAQ- KRG - ERBIL 100M ROAD - OPPOSITE TO ERBIL INTERNATIONAL AIRPORT",
+    "emailValue": "info@jegrjalal.com"
   },
   "homepage": {
     "heroTitle": "Shaping Cities Across Iraq",
@@ -31,6 +37,21 @@
     "aboutText1": "Jegr Jalal Company is Iraq's premier construction and infrastructure development firm, dedicated to building sustainable urban solutions that stand the test of time.",
     "aboutText2": "From landscaping and road development to specialized concrete work and security installations, we deliver comprehensive solutions that enhance urban life across Iraq.",
     "aboutSlogan": "Strong. Elegant. Jegr Jalal.",
+    "aboutSlogan2": "High Quality. Guarantee. Excellent Local Manufacturer.",
+    "whyChooseTitle": "Why Do Clients Choose Us?",
+    "whyChooseDesc": "Discover the key reasons our clients trust and choose us for their projects.",
+    "whyChoose1Title": "In-house manufacturing with international standards",
+    "whyChoose1Desc": "We manufacture all products in-house, ensuring quality and compliance with global standards.",
+    "whyChoose2Title": "From idea to execution",
+    "whyChoose2Desc": "We support our clients at every stage, from concept to project delivery.",
+    "whyChoose3Title": "Trusted by government entities",
+    "whyChoose3Desc": "Our reputation is built on successful collaborations with government and public sector clients.",
+    "whyChoose4Title": "Based in Iraq and covering all provinces",
+    "whyChoose4Desc": "We are proudly based in Iraq and serve clients across all provinces.",
+    "whyChoose5Title": "High quality and on-time execution",
+    "whyChoose5Desc": "We deliver high-quality results on schedule, every time.",
+    "featuredProjectsTitle": "Featured Projects",
+    "featuredProjectsDesc": "A selection of our landmark lighting and infrastructure projects across Erbil, Kurdistan, Iraq.",
     "servicesTitle": "Our Services",
     "servicesDesc": "Comprehensive construction and infrastructure solutions tailored to meet Iraq's urban development needs.",
     "servicesCTA": "View All Services",
@@ -47,7 +68,19 @@
     "whyChoose": "Why Choose Jegr Jalal Company?",
     "ctaTitle": "Need a Custom Solution?",
     "ctaDesc": "Our team is ready to discuss your specific requirements and create a tailored solution that meets your unique needs and budget.",
-    "ctaButton": "Contact Us Today"
+    "ctaButton": "Contact Us Today",
+    "searchPlaceholder": "Search services...",
+    "filterByCategory": "Filter by category",
+    "serviceCategoriesTitle": "Service Categories",
+    "whyChooseDesc": "We combine expertise, quality materials, and innovative solutions to deliver exceptional results.",
+    "whyChoose1Title": "Quality Assurance",
+    "whyChoose1Desc": "Every project undergoes rigorous quality checks to ensure it meets our high standards and your expectations.",
+    "whyChoose2Title": "Expert Team",
+    "whyChoose2Desc": "Our skilled professionals bring years of experience and specialized knowledge to every project.",
+    "whyChoose3Title": "Modern Technology",
+    "whyChoose3Desc": "We use the latest tools and techniques to deliver efficient, innovative solutions.",
+    "loading": "Loading...",
+    "error": "Failed to load services"
   },
   "projectsPage": {
     "heroTitle": "Our Projects",
@@ -69,7 +102,29 @@
     "visionTitle": "Our Vision",
     "visionText": "To be Iraq's leading provider of innovative, sustainable, and elegant urban solutions.",
     "missionTitle": "Our Mission",
-    "missionText": "To deliver high-quality construction and infrastructure projects that enhance communities and improve lives across Iraq."
+    "missionText": "To deliver high-quality construction and infrastructure projects that enhance communities and improve lives across Iraq.",
+    "valuesTitle": "Our Values",
+    "valuesDesc": "The principles that guide every project and decision we make.",
+    "values": [
+      { "title": "Integrity", "description": "We uphold the highest standards of honesty and transparency in all our dealings." },
+      { "title": "Innovation", "description": "We embrace new ideas and technologies to deliver better solutions." },
+      { "title": "Quality", "description": "We are committed to delivering superior quality in every project." },
+      { "title": "Sustainability", "description": "We prioritize sustainable practices for a better future." }
+    ],
+    "journeyTitle": "Our Journey",
+    "journeyDesc": "Explore the milestones that shaped Jegr Jalal’s story.",
+    "journey": [
+      { "year": "2007", "title": "Lighting & Electrical Launch", "description": "Jegr Jalal began its journey, focusing on high-quality lighting and electrical installation services." },
+      { "year": "2019", "title": "Manufacturing Expansion", "description": "Established manufacturing for decorative and modern lighting poles, setting new standards in design." },
+      { "year": "2022", "title": "General Contracting & Real Estate", "description": "Diversified into general contracting and real estate investment, broadening our industry impact." },
+      { "year": "2024", "title": "Government Consulting Recognition", "description": "Recognized as a trusted development and consulting partner for major government projects." }
+    ],
+    "stats": {
+      "completed": "Projects Completed",
+      "cities": "Iraqi Cities",
+      "team": "Team Members",
+      "satisfaction": "Client Satisfaction"
+    }
   },
   "contactPage": {
     "title": "Contact Us",
@@ -86,22 +141,10 @@
     "faq2Answer": "We serve clients across all regions of Iraq, with a focus on major cities and urban areas.",
     "faq3Question": "What types of projects do you handle?",
     "faq3Answer": "We handle a wide range of construction and infrastructure projects, including landscaping, roadworks, concrete, lighting, and security installations.",
+    "location": "IRAQ- KRG - ERBIL 100M ROAD, OPPOSITE TO ERBIL INTERNATIONAL AIRPORT",
+    "phone": "0771 555 4224\n0750 555 4243",
+    "email": "info@jegrjalal.com",
     "info": {
-      "address": {
-        "company": "Jegr Jalal Company",
-        "city": "Baghdad, Iraq",
-        "building": "Main Office Building"
-      },
-      "phone": {
-        "main": "Main Office: +964 XXX XXX XXXX",
-        "emergency": "Emergency Line: +964 XXX XXX XXXX",
-        "project": "Project Management: +964 XXX XXX XXXX"
-      },
-      "email": {
-        "general": "General: info@jegrjalal.com",
-        "quotes": "Project Quotes: quotes@jegrjalal.com",
-        "support": "Support: support@jegrjalal.com"
-      },
       "hours": {
         "weekdays": "Sunday - Thursday: 8:00 AM - 6:00 PM",
         "friday": "Friday: 8:00 AM - 2:00 PM",
@@ -134,27 +177,60 @@
     }
   },
   "admin": {
-    "loginTitle": "Admin Login",
-    "username": "Username",
-    "password": "Password",
-    "login": "Login",
-    "dashboard": "Dashboard",
-    "projects": "Projects",
-    "services": "Services",
-    "logout": "Logout",
-    "manageProjects": "Manage Projects",
+    "settingsTitle": "Settings",
+    "companyInfo": "Company Info",
+    "companyName": "Company Name",
+    "logo": "Logo",
+    "logoPreview": "Logo Preview",
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "facebook": "Facebook",
+    "linkedin": "LinkedIn",
+    "whatsapp": "WhatsApp",
+    "sitePreferences": "Site Preferences",
+    "defaultLanguage": "Default Language",
+    "enableTestimonials": "Enable Testimonials",
+    "enableBlog": "Enable Blog",
+    "enableFAQ": "Enable FAQ",
+    "maintenanceMode": "Maintenance Mode",
+    "primaryColor": "Primary Color",
+    "secondaryColor": "Secondary Color",
+    "adminPreferences": "Admin Preferences",
+    "currentPassword": "Current Password",
+    "newPassword": "New Password",
+    "confirmNewPassword": "Confirm New Password",
+    "saveSettings": "Save Settings",
+    "saving": "Saving...",
+    "loading": "Loading...",
     "manageServices": "Manage Services",
-    "addProject": "Add Project",
+    "searchPlaceholder": "Search...",
+    "exportCSV": "Export CSV",
+    "bulkDelete": "Bulk Delete",
     "addService": "Add Service",
-    "edit": "Edit",
-    "delete": "Delete",
-    "save": "Save Changes",
+    "addNewService": "Add New Service",
+    "editService": "Edit Service",
+    "name": "Name",
+    "serviceName": "Service Name",
+    "description": "Description",
+    "serviceDescription": "Service Description",
+    "images": "Images",
+    "category": "Category",
+    "save": "Save",
     "cancel": "Cancel",
+    "error": "An error occurred.",
+    "dashboardTitle": "Dashboard",
+    "helpTitle": "Help",
+    "projectsTitle": "Manage Projects",
+    "addProject": "Add Project",
+    "editProject": "Edit Project",
+    "delete": "Delete",
     "sidebar": {
-      "title": "Admin Panel",
       "dashboard": "Dashboard",
       "projects": "Projects",
-      "services": "Services"
+      "services": "Services",
+      "settings": "Settings",
+      "help": "Help"
     }
   },
   "dashboard": {
@@ -196,5 +272,29 @@
     "actionTypeTooltip": "Filter activity feed by action type (Add, Update, Delete, etc.).",
     "exportTooltip": "Export analytics data as a CSV file.",
     "noData": "No data available."
+  },
+  "serviceSubcategoryPage": {
+    "backToCategory": "Back to {{category}}"
+  },
+  "ourLocation": "Our Location",
+  "serviceCategories": {
+    "lightPoles": "Light Poles",
+    "decorativeLightPoles": "Decorative Light Poles",
+    "modernLightPoles": "Modern Light Poles",
+    "standardLightPoles": "Standard Light Poles",
+    "landscape": "Landscape",
+    "landscaping": "Landscaping",
+    "benches": "Benches",
+    "trashCans": "Trash Cans",
+    "stampConcrete": "Stamp Concrete",
+    "industrialBasalt": "Industrial Basalt",
+    "kerbStone": "Kerb Stone",
+    "gamesOutdoorTraining": "Games and Outdoor Training Equipment",
+    "booths": "Booths",
+    "shades": "Shades",
+    "urbanDesign": "Urban Design",
+    "guardRail": "Guard Rail",
+    "roadSigns": "Road Signs",
+    "trafficLights": "Traffic Lights"
   }
 } 

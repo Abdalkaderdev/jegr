@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from '../../assets/IMG_9929.png';
+import { useTranslation } from 'react-i18next';
 
 const AdminLogin: React.FC = () => {
   const [form, setForm] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -28,6 +30,15 @@ const AdminLogin: React.FC = () => {
         <div className="flex justify-center mb-4">
           <img src={logo} alt="Company Logo" className="h-36 w-auto" />
         </div>
+        <h1 className="text-3xl font-bold mb-8 text-orange-600">{t('admin.welcome')}</h1>
+        <div className="mb-8 text-gray-700">{t('admin.quickLinks')}</div>
+        <ul className="list-disc pl-6 space-y-2">
+          <li>{t('admin.dashboard')}</li>
+          <li>{t('admin.projects')}</li>
+          <li>{t('admin.services')}</li>
+          <li>{t('admin.settings')}</li>
+          <li>{t('admin.help')}</li>
+        </ul>
         <h1 className="text-2xl font-bold text-center text-orange-600 mb-6">Admin Login</h1>
         {error && <div className="mb-4 text-red-600 text-center">{error}</div>}
         <div className="mb-4">

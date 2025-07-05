@@ -25,7 +25,11 @@ const ProjectGallery: React.FC = () => {
       <div className="container-custom">
         <h2 className="text-4xl font-bold text-center text-gray-900 mb-12">Project Gallery</h2>
         <div className="relative max-w-2xl mx-auto">
-          <img src={images[current].src} alt={images[current].caption} className="w-full h-80 object-cover rounded-lg shadow mb-4" />
+          <picture>
+            <source srcSet={images[current].src.replace(/\.(png|jpeg|jpg)$/, '.webp')} type="image/webp" />
+            <source srcSet={images[current].src.replace(/\.(png|jpeg|jpg)$/, '.avif')} type="image/avif" />
+            <img src={images[current].src} alt={images[current].caption} width={800} height={400} className="w-full h-80 object-cover rounded-lg shadow mb-4" loading="lazy" />
+          </picture>
           <div className="text-center text-gray-700 mb-6">{images[current].caption}</div>
           <div className="flex justify-center space-x-4">
             <button onClick={prev} className="btn-tertiary">Prev</button>

@@ -104,10 +104,11 @@ const ContactPage = () => {
                       <MapPin className="h-6 w-6 text-orange-600" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-1 group-hover:text-orange-600 transition-colors duration-300">Location</h3>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-1 group-hover:text-orange-600 transition-colors duration-300">{t('contactPage.location')}</h3>
                       <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">
-                        IRAQ- KRG - ERBIL 100M ROAD<br />
-                        OPPOSITE TO ERBIL INTERNATIONAL AIRPORT
+                        {t('contactPage.location').split('\n').map((line, idx) => (
+                          <React.Fragment key={idx}>{line}<br /></React.Fragment>
+                        ))}
                       </p>
                     </div>
                   </div>
@@ -118,10 +119,13 @@ const ContactPage = () => {
                       <Phone className="h-6 w-6 text-orange-600" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-1 group-hover:text-orange-600 transition-colors duration-300">Phone</h3>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-1 group-hover:text-orange-600 transition-colors duration-300">{t('contactPage.phone')}</h3>
                       <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">
-                        <a href="tel:07715554224" className="underline hover:text-orange-500">0771 555 4224</a><br />
-                        <a href="tel:07505554243" className="underline hover:text-orange-500">0750 555 4243</a>
+                        {t('contactPage.phone').split('\n').map((line, idx) => (
+                          <React.Fragment key={idx}>
+                            <a href={`tel:${line.replace(/\s/g, '')}`} className="underline hover:text-orange-500">{line}</a><br />
+                          </React.Fragment>
+                        ))}
                       </p>
                     </div>
                   </div>
@@ -132,9 +136,9 @@ const ContactPage = () => {
                       <Mail className="h-6 w-6 text-orange-600" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-1 group-hover:text-orange-600 transition-colors duration-300">Email</h3>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-1 group-hover:text-orange-600 transition-colors duration-300">{t('contactPage.email')}</h3>
                       <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">
-                        <a href="mailto:CONTACT@JEGRJALALCOMPANY.COM" className="underline hover:text-orange-500">CONTACT@JEGRJALALCOMPANY.COM</a>
+                        <a href={`mailto:${t('contactPage.email')}`} className="underline hover:text-orange-500">{t('contactPage.email')}</a>
                       </p>
                     </div>
                   </div>

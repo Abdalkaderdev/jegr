@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { Suspense, lazy, useState, useEffect } from 'react';
 import AdminLayout from './AdminLayout';
 import DetailsModal from '../../components/ui/DetailsModal';
 import ConfirmationDialog from '../../components/ui/ConfirmationDialog';
@@ -8,6 +8,7 @@ import ImageGalleryInput from '../../components/ui/ImageGalleryInput';
 import Papa from 'papaparse';
 import { useHotkeys } from 'react-hotkeys-hook';
 import servicesCategories from '../../../src/data/servicesCategories.json';
+import { useTranslation } from 'react-i18next';
 
 interface Service {
   _id: string;
@@ -41,6 +42,7 @@ const AdminServices: React.FC = () => {
   const [confirmAction, setConfirmAction] = useState<() => void>(() => () => {});
   const [activityLog, setActivityLog] = useState<any[]>(() => JSON.parse(localStorage.getItem('activityLogServices') || '[]'));
   const [helpOpen, setHelpOpen] = useState(false);
+  const { t } = useTranslation();
 
   // Fetch services on mount
   useEffect(() => {
@@ -192,9 +194,10 @@ const AdminServices: React.FC = () => {
   };
 
   // Add import CSV handler
-  const handleImportCSV = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImportCSV = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
+    const Papa = (await import('papaparse')).default;
     Papa.parse(file, {
       header: true,
       skipEmptyLines: true,
@@ -251,7 +254,7 @@ const AdminServices: React.FC = () => {
   return (
     <AdminLayout>
       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8 gap-4">
-        <h1 className="text-3xl font-bold text-orange-600">Manage Services</h1>
+        <h1 className="text-3xl font-bold mb-8 text-orange-600">{t('admin.servicesTitle')}</h1>
         <div className="flex flex-col md:flex-row gap-2">
           <input
             type="text"
@@ -279,7 +282,8 @@ const AdminServices: React.FC = () => {
           <button className="btn-primary" onClick={handleAddClick}>Add Service</button>
         </div>
       </div>
-      {error && <div className="mb-4 text-red-600 text-center">{error}</div>}
+      {error && <div className="mb-4 text-red-600 text-center">{t('admin.error')}</div>}
+      {loading && <div className="mb-4 text-gray-500 text-center">{t('admin.loading')}</div>}
       {showForm && (
         <div className="bg-white rounded-lg shadow p-6 mb-8 max-w-xl mx-auto">
           <h2 className="text-xl font-semibold mb-4">{mode === 'add' ? 'Add New Service' : 'Edit Service'}</h2>
@@ -298,21 +302,25 @@ const AdminServices: React.FC = () => {
             </div>
             <div>
               <label className="block text-gray-700 mb-1">Description</label>
-              <RichTextEditor
-                value={form.description}
-                onChange={val => setForm(f => ({ ...f, description: val }))}
-                placeholder="Service Description"
-                required
-                className="mb-2"
-              />
+              <Suspense fallback={<div>Loading editor...</div>}>
+                <RichTextEditor
+                  value={form.description}
+                  onChange={val => setForm(f => ({ ...f, description: val }))}
+                  placeholder="Service Description"
+                  required
+                  className="mb-2"
+                />
+              </Suspense>
             </div>
             <div>
               <label className="block text-gray-700 mb-1">Images</label>
-              <ImageGalleryInput
-                images={form.images}
-                onChange={imgs => setForm(f => ({ ...f, images: imgs as string[] }))}
-                className="mb-2"
-              />
+              <Suspense fallback={<div>Loading gallery...</div>}>
+                <ImageGalleryInput
+                  images={form.images}
+                  onChange={imgs => setForm(f => ({ ...f, images: imgs as string[] }))}
+                  className="mb-2"
+                />
+              </Suspense>
             </div>
             <div>
               <label className="block mb-1 font-medium">Category</label>

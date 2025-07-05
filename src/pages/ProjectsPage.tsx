@@ -93,11 +93,11 @@ const ProjectsPage = () => {
         <div className="container-custom flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <input
             type="text"
-            placeholder="Search projects..."
+            placeholder={t('projectsPage.searchPlaceholder')}
             value={search}
             onChange={e => setSearch(e.target.value)}
             className="form-input w-full md:w-1/3"
-            aria-label="Search projects"
+            aria-label={t('projectsPage.searchPlaceholder')}
           />
         </div>
       </section>
@@ -117,7 +117,11 @@ const ProjectsPage = () => {
                 transition={{ duration: 0.7, ease: 'easeOut', delay: index * 0.1 }}
               >
                 <div className="w-full h-48 bg-gray-100 flex items-center justify-center">
-                  <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                  <picture>
+                    <source srcSet={project.image.replace(/\.png$/, '.webp')} type="image/webp" />
+                    <source srcSet={project.image.replace(/\.png$/, '.avif')} type="image/avif" />
+                    <img src={project.image} alt={project.title} width={400} height={200} loading="lazy" className="w-full h-full object-cover" />
+                  </picture>
                 </div>
                 <div className="flex-1 flex flex-col items-center justify-center text-center p-6">
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">{project.title}</h3>

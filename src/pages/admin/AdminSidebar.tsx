@@ -148,8 +148,8 @@ const AdminSidebar: React.FC = () => {
                     </li>
                   ))}
                 </ul>
-                <a href="/admin/settings" className="block px-4 py-2 rounded hover:bg-orange-100 transition-colors">Settings</a>
-                <button className="mt-4 w-full btn-secondary text-xs py-1 rounded" onClick={() => setCustomizeOpen(true)}>Customize Sidebar</button>
+                <a href="/admin/settings" className="block px-4 py-2 rounded hover:bg-orange-100 transition-colors">{t('admin.settings')}</a>
+                <button className="mt-4 w-full btn-secondary text-xs py-1 rounded" onClick={() => setCustomizeOpen(true)}>{t('admin.customize.sidebar')}</button>
               </nav>
             </motion.aside>
           </motion.div>
@@ -175,8 +175,8 @@ const AdminSidebar: React.FC = () => {
               </li>
             ))}
           </ul>
-          <a href="/admin/settings" className="block px-4 py-2 rounded hover:bg-orange-100 transition-colors">Settings</a>
-          <button className="mt-4 w-full btn-secondary text-xs py-1 rounded" onClick={() => setCustomizeOpen(true)}>Customize Sidebar</button>
+          <a href="/admin/settings" className="block px-4 py-2 rounded hover:bg-orange-100 transition-colors">{t('admin.settings')}</a>
+          <button className="mt-4 w-full btn-secondary text-xs py-1 rounded" onClick={() => setCustomizeOpen(true)}>{t('admin.customize.sidebar')}</button>
         </nav>
       </aside>
       {/* Customization Modal */}
@@ -201,7 +201,7 @@ const AdminSidebar: React.FC = () => {
               tabIndex={0}
               aria-label="Customize Sidebar"
             >
-              <h2 className="text-lg font-semibold mb-4">Customize Sidebar</h2>
+              <h2 className="text-lg font-semibold mb-4">{t('admin.customize.title')}</h2>
               <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
                 <SortableContext items={sidebarItems.map((i: any) => i.key)} strategy={verticalListSortingStrategy}>
                   <ul>
@@ -211,7 +211,7 @@ const AdminSidebar: React.FC = () => {
                   </ul>
                 </SortableContext>
               </DndContext>
-              <button className="btn-primary mt-4 w-full" onClick={() => setCustomizeOpen(false)}>Done</button>
+              <button className="btn-primary mt-4 w-full" onClick={() => setCustomizeOpen(false)}>{t('admin.customize.done')}</button>
             </motion.div>
           </motion.div>
         )}

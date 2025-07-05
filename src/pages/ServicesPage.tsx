@@ -19,28 +19,6 @@ import lightPoleBannerIcon from '../assets/light-pole-banner.png';
 import industrialBasaltIcon from '../assets/ChatGPT Image Jul 4, 2025, 05_54_34 PM.png';
 import HeroServiceImg from '../assets/IMG_6097.jpeg';
 
-export const iconMap: Record<string, React.ReactNode> = {
-  // Main categories
-  'Light Poles': <img src={streetLight} alt="Light Poles" className="h-6 w-6 inline-block mr-2" />,
-  'Landscape': <Trees className="h-6 w-6 text-orange-600 inline-block mr-2" />,
-  'Urban Design': <Landmark className="h-6 w-6 text-orange-600 inline-block mr-2" />,
-  // Subcategories
-  'Decorative Light Poles': <img src={lightPoleBannerIcon} alt="Decorative Light Poles" className="h-5 w-5 inline-block mr-2" />,
-  'Modern Light Poles': <img src={streetLight} alt="Modern Light Poles" className="h-5 w-5 inline-block mr-2" />,
-  'Landscaping': <img src={treesIcon} alt="Landscaping" className="h-5 w-5 inline-block mr-2" />,
-  'Benches': <img src={benchIcon} alt="Benches" className="h-5 w-5 inline-block mr-2" />,
-  'Trash Cans': <Trash2 className="h-5 w-5 text-orange-400 inline-block mr-2" />,
-  'Stamp Concrete': <img src={bronzeIcon} alt="Stamp Concrete" className="h-5 w-5 inline-block mr-2" />,
-  'Industrial Basalt': <img src={industrialBasaltIcon} alt="Industrial Basalt" className="h-5 w-5 inline-block mr-2" />,
-  'Kerb Stone': <img src={bronzeIcon} alt="Kerb Stone" className="h-5 w-5 inline-block mr-2" />,
-  'Booths': <img src={stallIcon} alt="Booths" className="h-5 w-5 inline-block mr-2" />,
-  'Games and Outdoor Training Equipment': <Gamepad2 className="h-5 w-5 text-orange-400 inline-block mr-2" />,
-  'Shades': <Umbrella className="h-5 w-5 text-orange-400 inline-block mr-2" />,
-  'Guard Rail': <img src={railingIcon} alt="Guard Rail" className="h-5 w-5 inline-block mr-2" />,
-  'Road Signs': <img src={signIcon} alt="Road Signs" className="h-5 w-5 inline-block mr-2" />,
-  'Traffic Lights': <img src={signalIcon} alt="Traffic Lights" className="h-5 w-5 inline-block mr-2" />,
-};
-
 const ServicesPage = () => {
   const { t } = useTranslation();
   const [services, setServices] = useState<any[]>([]);
@@ -50,6 +28,28 @@ const ServicesPage = () => {
   const [selectedService, setSelectedService] = useState<any>(null);
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('All');
+
+  const iconMap: Record<string, React.ReactNode> = {
+    // Main categories
+    [t('serviceCategories.lightPoles')]: <img src={streetLight} alt={t('serviceCategories.lightPoles')} className="h-6 w-6 inline-block mr-2" />,
+    [t('serviceCategories.landscape')]: <Trees className="h-6 w-6 text-orange-600 inline-block mr-2" />,
+    [t('serviceCategories.urbanDesign')]: <Landmark className="h-6 w-6 text-orange-600 inline-block mr-2" />,
+    // Subcategories
+    [t('serviceCategories.decorativeLightPoles')]: <img src={lightPoleBannerIcon} alt={t('serviceCategories.decorativeLightPoles')} className="h-5 w-5 inline-block mr-2" />,
+    [t('serviceCategories.modernLightPoles')]: <img src={streetLight} alt={t('serviceCategories.modernLightPoles')} className="h-5 w-5 inline-block mr-2" />,
+    [t('serviceCategories.landscaping')]: <img src={treesIcon} alt={t('serviceCategories.landscaping')} className="h-5 w-5 inline-block mr-2" />,
+    [t('serviceCategories.benches')]: <img src={benchIcon} alt={t('serviceCategories.benches')} className="h-5 w-5 inline-block mr-2" />,
+    [t('serviceCategories.trashCans')]: <Trash2 className="h-5 w-5 text-orange-400 inline-block mr-2" />,
+    [t('serviceCategories.stampConcrete')]: <img src={bronzeIcon} alt={t('serviceCategories.stampConcrete')} className="h-5 w-5 inline-block mr-2" />,
+    [t('serviceCategories.industrialBasalt')]: <img src={industrialBasaltIcon} alt={t('serviceCategories.industrialBasalt')} className="h-5 w-5 inline-block mr-2" />,
+    [t('serviceCategories.kerbStone')]: <img src={bronzeIcon} alt={t('serviceCategories.kerbStone')} className="h-5 w-5 inline-block mr-2" loading="lazy" />,
+    [t('serviceCategories.booths')]: <img src={stallIcon} alt={t('serviceCategories.booths')} className="h-5 w-5 inline-block mr-2" loading="lazy" />,
+    [t('serviceCategories.gamesOutdoorTraining')]: <Gamepad2 className="h-5 w-5 text-orange-400 inline-block mr-2" />,
+    [t('serviceCategories.shades')]: <Umbrella className="h-5 w-5 text-orange-400 inline-block mr-2" />,
+    [t('serviceCategories.guardRail')]: <img src={railingIcon} alt={t('serviceCategories.guardRail')} className="h-5 w-5 inline-block mr-2" loading="lazy" />,
+    [t('serviceCategories.roadSigns')]: <img src={signIcon} alt={t('serviceCategories.roadSigns')} className="h-5 w-5 inline-block mr-2" loading="lazy" />,
+    [t('serviceCategories.trafficLights')]: <img src={signalIcon} alt={t('serviceCategories.trafficLights')} className="h-5 w-5 inline-block mr-2" loading="lazy" />,
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -101,17 +101,17 @@ const ServicesPage = () => {
         <div className="container-custom flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <input
             type="text"
-            placeholder="Search services..."
+            placeholder={t('servicesPage.searchPlaceholder')}
             value={search}
             onChange={e => setSearch(e.target.value)}
             className="form-input w-full md:w-1/3"
-            aria-label="Search services"
+            aria-label={t('servicesPage.searchPlaceholder')}
           />
           <select
             value={category}
             onChange={e => setCategory(e.target.value)}
             className="form-input w-full md:w-1/4"
-            aria-label="Filter by category"
+            aria-label={t('servicesPage.filterByCategory')}
           >
             {categories.map((cat) => (
               <option key={cat} value={cat}>{cat}</option>
@@ -123,16 +123,16 @@ const ServicesPage = () => {
       {/* Structured Categories List */}
       <section className="py-10 bg-white">
         <div className="container-custom">
-          <h2 className="text-2xl font-bold mb-6 text-orange-600">Service Categories</h2>
+          <h2 className="text-2xl font-bold mb-6 text-orange-600">{t('servicesPage.serviceCategoriesTitle')}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             {Object.entries(servicesCategories).map(([category, catData], idx) => (
               <AnimatedSection key={category} animation="scale-in" delay={idx * 100}>
                 <div className="relative bg-white/70 backdrop-blur-lg rounded-2xl shadow-xl border border-orange-100 p-8 group transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
                   <Link to={`/services/category/${category}`} className="flex items-center mb-4 gap-3 group-hover:text-orange-600 transition-colors duration-300">
                     <span className="flex items-center justify-center w-14 h-14 rounded-xl bg-orange-50 group-hover:bg-orange-100 shadow-md transition-all duration-300">
-                      {iconMap[category]}
+                      {iconMap[t(`serviceCategories.${category}`)]}
                     </span>
-                    <span className="text-2xl font-bold">{category}</span>
+                    <span className="text-2xl font-bold">{t(`serviceCategories.${category}`)}</span>
                   </Link>
                   <div className="flex flex-wrap gap-2 mt-2">
                     {Object.keys(catData.subcategories).map((sub, subIdx) => (
@@ -142,7 +142,7 @@ const ServicesPage = () => {
                         className="flex items-center px-3 py-1 rounded-full bg-orange-100 text-orange-700 text-sm font-medium shadow hover:bg-orange-200 hover:text-orange-900 transition-all duration-200 animate-fade-in"
                         style={{ animationDelay: `${subIdx * 60}ms` }}
                       >
-                        <span className="mr-1">{iconMap[sub]}</span>{sub}
+                        <span className="mr-1">{iconMap[t(`serviceCategories.${sub}`)]}</span>{t(`serviceCategories.${sub}`)}
                       </Link>
                     ))}
                   </div>
@@ -157,9 +157,9 @@ const ServicesPage = () => {
       <section className="py-20 bg-white">
         <div className="container-custom">
           {loading ? (
-            <div className="text-center text-gray-500 py-8">Loading...</div>
+            <div className="text-center text-gray-500 py-8">{t('servicesPage.loading')}</div>
           ) : error ? (
-            <div className="text-center text-red-600 py-8">{error}</div>
+            <div className="text-center text-red-600 py-8">{t('servicesPage.error')}</div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredServices.map((service, index) => (
@@ -187,7 +187,7 @@ const ServicesPage = () => {
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-900 mb-4">{t('servicesPage.whyChoose')}</h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                We combine expertise, quality materials, and innovative solutions to deliver exceptional results.
+                {t('servicesPage.whyChooseDesc')}
               </p>
             </div>
           </AnimatedSection>
@@ -198,9 +198,9 @@ const ServicesPage = () => {
                 <div className="flex items-center justify-center w-16 h-16 bg-orange-100 rounded-full mx-auto mb-4 group-hover:bg-orange-200 group-hover:scale-110 transition-all duration-300">
                   <CheckCircle className="h-8 w-8 text-orange-600" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-orange-600 transition-colors duration-300">Quality Assurance</h3>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-orange-600 transition-colors duration-300">{t('servicesPage.whyChoose1Title')}</h3>
                 <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">
-                  Every project undergoes rigorous quality checks to ensure it meets our high standards and your expectations.
+                  {t('servicesPage.whyChoose1Desc')}
                 </p>
               </div>
             </AnimatedSection>
@@ -210,9 +210,9 @@ const ServicesPage = () => {
                 <div className="flex items-center justify-center w-16 h-16 bg-orange-100 rounded-full mx-auto mb-4 group-hover:bg-orange-200 group-hover:scale-110 transition-all duration-300">
                   <Star className="h-8 w-8 text-orange-600" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-orange-600 transition-colors duration-300">Expert Team</h3>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-orange-600 transition-colors duration-300">{t('servicesPage.whyChoose2Title')}</h3>
                 <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">
-                  Our skilled professionals bring years of experience and specialized knowledge to every project.
+                  {t('servicesPage.whyChoose2Desc')}
                 </p>
               </div>
             </AnimatedSection>
@@ -222,9 +222,9 @@ const ServicesPage = () => {
                 <div className="flex items-center justify-center w-16 h-16 bg-orange-100 rounded-full mx-auto mb-4 group-hover:bg-orange-200 group-hover:scale-110 transition-all duration-300">
                   <Zap className="h-8 w-8 text-orange-600" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-orange-600 transition-colors duration-300">Modern Technology</h3>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-orange-600 transition-colors duration-300">{t('servicesPage.whyChoose3Title')}</h3>
                 <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">
-                  We use the latest tools and techniques to deliver efficient, innovative solutions.
+                  {t('servicesPage.whyChoose3Desc')}
                 </p>
               </div>
             </AnimatedSection>

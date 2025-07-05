@@ -80,6 +80,20 @@ const AboutPage = () => {
     }
   ];
 
+  // Define icons for values and journey
+  const valueIcons = [
+    FaAward, // Integrity
+    FaLightbulb, // Innovation
+    FaIndustry, // Quality
+    FaBuilding, // Sustainability
+  ];
+  const journeyIcons = [
+    FaLightbulb,
+    FaIndustry,
+    FaBuilding,
+    FaAward,
+  ];
+
   return (
     <>
       {/* Hero Section */}
@@ -117,11 +131,11 @@ const AboutPage = () => {
             
             <AnimatedSection animation="slide-in-right" delay={200}>
               <div className="relative image-hover-zoom rounded-lg overflow-hidden shadow-xl">
-                <img
-                  src={interchangeImg}
-                  alt="Aerial view of a highway interchange at night"
-                  className="w-full h-full object-cover"
-                />
+                <picture>
+                  <source srcSet={interchangeImg.replace(/\.(png|jpeg|jpg)$/, '.webp')} type="image/webp" />
+                  <source srcSet={interchangeImg.replace(/\.(png|jpeg|jpg)$/, '.avif')} type="image/avif" />
+                  <img src={interchangeImg} alt="Aerial view of a highway interchange at night" width={800} height={600} loading="lazy" className="w-full h-full object-cover" />
+                </picture>
               </div>
             </AnimatedSection>
           </div>
@@ -133,16 +147,16 @@ const AboutPage = () => {
         <div className="container-custom px-4">
           <AnimatedSection animation="fade-in">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Values</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">{t('aboutPage.valuesTitle')}</h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                The principles that guide every project and decision we make.
+                {t('aboutPage.valuesDesc')}
               </p>
             </div>
           </AnimatedSection>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value, index) => {
-              const IconComponent = value.icon;
+            {(t('aboutPage.values', { returnObjects: true }) as Array<{title: string, description: string}>).map((value, index) => {
+              const IconComponent = valueIcons[index];
               return (
                 <AnimatedSection 
                   key={index} 
@@ -167,41 +181,16 @@ const AboutPage = () => {
       <section className="py-20 bg-white">
         <div className="container-custom px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Journey</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">{t('aboutPage.journeyTitle')}</h2>
             <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-              Explore the milestones that shaped Jegr Jalal’s story.
+              {t('aboutPage.journeyDesc')}
             </p>
           </div>
           <div className="relative">
             {/* Central vertical line */}
             <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-orange-200 z-0"></div>
             <div className="space-y-16">
-              {[
-                {
-                  year: '2007',
-                  title: 'Lighting & Electrical Launch',
-                  description: 'Jegr Jalal began its journey, focusing on high-quality lighting and electrical installation services.',
-                  icon: <FaLightbulb className="text-orange-500 w-8 h-8" />,
-                },
-                {
-                  year: '2019',
-                  title: 'Manufacturing Expansion',
-                  description: 'Established manufacturing for decorative and modern lighting poles, setting new standards in design.',
-                  icon: <FaIndustry className="text-orange-500 w-8 h-8" />,
-                },
-                {
-                  year: '2022',
-                  title: 'General Contracting & Real Estate',
-                  description: 'Diversified into general contracting and real estate investment, broadening our industry impact.',
-                  icon: <FaBuilding className="text-orange-500 w-8 h-8" />,
-                },
-                {
-                  year: '2024',
-                  title: 'Government Consulting Recognition',
-                  description: 'Recognized as a trusted development and consulting partner for major government projects.',
-                  icon: <FaAward className="text-orange-500 w-8 h-8" />,
-                },
-              ].map((item, idx) => (
+              {(t('aboutPage.journey', { returnObjects: true }) as Array<{year: string, title: string, description: string}>).map((item, idx) => (
                 <div
                   key={item.year}
                   className={`
@@ -211,12 +200,12 @@ const AboutPage = () => {
                   `}
                 >
                   {/* Content box */}
-                  <div className={`w-1/2 flex justify-center max-md:w-full max-md:justify-center`}> {/* Make timeline item full width on mobile */}
+                  <div className={`w-1/2 flex justify-center max-md:w-full max-md:justify-center`}>
                     <div className={`bg-white p-8 rounded-lg shadow-lg border border-gray-100 max-w-md w-full
                       ${idx % 2 === 0 ? 'animate-fade-in-left' : 'animate-fade-in-right'} animate-scale-in
                     `}>
                       <div className="flex items-center mb-2 justify-center">
-                        <span className="animate-fade-in-stagger" style={{ '--delay': '0ms' } as React.CSSProperties}>{item.icon}</span>
+                        <span className="animate-fade-in-stagger" style={{ '--delay': '0ms' } as React.CSSProperties}>{React.createElement(journeyIcons[idx])}</span>
                         <span className="ml-3 text-2xl font-bold text-orange-600 animate-fade-in-stagger" style={{ '--delay': '100ms' } as React.CSSProperties}>{item.year}</span>
                       </div>
                       <h3 className="text-xl font-bold text-gray-900 mb-2 text-center animate-fade-in-stagger" style={{ '--delay': '200ms' } as React.CSSProperties}>{item.title}</h3>
@@ -225,7 +214,7 @@ const AboutPage = () => {
                   </div>
                   {/* Timeline dot with pulse animation */}
                   <div className="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-orange-500 rounded-full border-4 border-white shadow-lg z-20 flex items-center justify-center animate-pulse-dot">
-                    {item.icon}
+                    {React.createElement(journeyIcons[idx])}
                   </div>
                   {/* Spacer for alignment on desktop */}
                   <div className="w-1/2 max-md:hidden"></div> {/* Only show spacer on desktop */}
@@ -244,19 +233,19 @@ const AboutPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center text-white">
             <div className="group">
               <div className="stats-counter mb-2 group-hover:scale-110 transition-transform duration-300">322</div>
-              <div className="text-orange-100 group-hover:text-white transition-colors duration-300">Projects Completed</div>
+              <div className="text-orange-100 group-hover:text-white transition-colors duration-300">{t('aboutPage.stats.completed')}</div>
             </div>
             <div className="group">
               <div className="stats-counter mb-2 group-hover:scale-110 transition-transform duration-300">17</div>
-              <div className="text-orange-100 group-hover:text-white transition-colors duration-300">Iraqi Cities</div>
+              <div className="text-orange-100 group-hover:text-white transition-colors duration-300">{t('aboutPage.stats.cities')}</div>
             </div>
             <div className="group">
               <div className="stats-counter mb-2 group-hover:scale-110 transition-transform duration-300">64</div>
-              <div className="text-orange-100 group-hover:text-white transition-colors duration-300">Team Members</div>
+              <div className="text-orange-100 group-hover:text-white transition-colors duration-300">{t('aboutPage.stats.team')}</div>
             </div>
             <div className="group">
               <div className="stats-counter mb-2 group-hover:scale-110 transition-transform duration-300">99%</div>
-              <div className="text-orange-100 group-hover:text-white transition-colors duration-300">Client Satisfaction</div>
+              <div className="text-orange-100 group-hover:text-white transition-colors duration-300">{t('aboutPage.stats.satisfaction')}</div>
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import servicesCategories from "../data/servicesCategories.json";
+import { useTranslation } from 'react-i18next';
 
 const ServiceSubcategoryPage = () => {
   const { categoryName, subCategoryName } = useParams();
@@ -10,6 +11,7 @@ const ServiceSubcategoryPage = () => {
     const subMap = catData.subcategories as Record<string, string>;
     subDesc = subMap[subCategoryName as string] || '';
   }
+  const { t } = useTranslation();
 
   return (
     <div className="w-full min-h-screen bg-white">
@@ -38,7 +40,7 @@ const ServiceSubcategoryPage = () => {
       {/* Back Button */}
       <div className="flex justify-center mt-8">
         <Link to={`/services/category/${categoryName}`} className="inline-block px-6 py-3 bg-orange-100 text-orange-700 text-lg font-semibold rounded-lg shadow-none hover:bg-orange-200 hover:text-orange-900 hover:scale-105 hover:underline transition-all duration-200 animate-fade-in">
-          ← Back to {categoryName}
+          ← {t('servicesPage.backToCategory', { category: categoryName })}
         </Link>
       </div>
     </div>

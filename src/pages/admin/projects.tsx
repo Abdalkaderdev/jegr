@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { Suspense, lazy, useState, useEffect } from 'react';
 import AdminLayout from './AdminLayout';
 import DetailsModal from '../../components/ui/DetailsModal';
 import ConfirmationDialog from '../../components/ui/ConfirmationDialog';
 import toast from 'react-hot-toast';
-import RichTextEditor from '../../components/ui/RichTextEditor';
-import ImageGalleryInput from '../../components/ui/ImageGalleryInput';
-import Papa from 'papaparse';
 import { useHotkeys } from 'react-hotkeys-hook';
+import { useTranslation } from 'react-i18next';
 
 interface Project {
   _id: string;
@@ -20,6 +18,9 @@ const emptyForm: { name: string; description: string; images: string[]; category
 type FormMode = 'add' | 'edit';
 
 const API_URL = '/api/projects';
+
+const RichTextEditor = lazy(() => import('../../components/ui/RichTextEditor'));
+const ImageGalleryInput = lazy(() => import('../../components/ui/ImageGalleryInput'));
 
 const AdminProjects: React.FC = () => {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -39,6 +40,7 @@ const AdminProjects: React.FC = () => {
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [confirmAction, setConfirmAction] = useState<() => void>(() => () => {});
   const [activityLog, setActivityLog] = useState<any[]>(() => JSON.parse(localStorage.getItem('activityLog') || '[]'));
+  const { t } = useTranslation();
 
   // Fetch projects on mount
   useEffect(() => {
@@ -186,13 +188,14 @@ const AdminProjects: React.FC = () => {
   };
 
   // Add import CSV handler
-  const handleImportCSV = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImportCSV = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
+    const Papa = (await import('papaparse')).default;
     Papa.parse(file, {
       header: true,
       skipEmptyLines: true,
-      complete: async (results: Papa.ParseResult<any>) => {
+      complete: async (results: any) => {
         const rows = results.data as any[];
         let successCount = 0;
         let errorCount = 0;
@@ -237,7 +240,7 @@ const AdminProjects: React.FC = () => {
   return (
     <AdminLayout>
       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8 gap-4">
-        <h1 className="text-3xl font-bold text-orange-600">Manage Projects</h1>
+        <h1 className="text-3xl font-bold mb-8 text-orange-600">{t('admin.projectsTitle')}</h1>
         <div className="flex flex-col md:flex-row gap-2">
           <input
             type="text"
@@ -265,7 +268,8 @@ const AdminProjects: React.FC = () => {
           <button className="btn-primary" onClick={handleAddClick}>Add Project</button>
         </div>
       </div>
-      {error && <div className="mb-4 text-red-600 text-center">{error}</div>}
+      {error && <div className="mb-4 text-red-600 text-center">{t('admin.error')}</div>}
+      {loading && <div className="mb-4 text-gray-500 text-center">{t('admin.loading')}</div>}
       {showForm && (
         <div className="bg-white rounded-lg shadow p-6 mb-8 max-w-xl mx-auto">
           <h2 className="text-xl font-semibold mb-4">{mode === 'add' ? 'Add New Project' : 'Edit Project'}</h2>
@@ -284,21 +288,25 @@ const AdminProjects: React.FC = () => {
             </div>
             <div>
               <label className="block text-gray-700 mb-1">Description</label>
-              <RichTextEditor
-                value={form.description}
-                onChange={val => setForm(f => ({ ...f, description: val }))}
-                placeholder="Project Description"
-                required
-                className="mb-2"
-              />
+              <Suspense fallback={<div>Loading editor...</div>}>
+                <RichTextEditor
+                  value={form.description}
+                  onChange={val => setForm(f => ({ ...f, description: val }))}
+                  placeholder="Project Description"
+                  required
+                  className="mb-2"
+                />
+              </Suspense>
             </div>
             <div>
               <label className="block text-gray-700 mb-1">Images</label>
-              <ImageGalleryInput
-                images={form.images}
-                onChange={imgs => setForm(f => ({ ...f, images: imgs as string[] }))}
-                className="mb-2"
-              />
+              <Suspense fallback={<div>Loading gallery...</div>}>
+                <ImageGalleryInput
+                  images={form.images}
+                  onChange={imgs => setForm(f => ({ ...f, images: imgs as string[] }))}
+                  className="mb-2"
+                />
+              </Suspense>
             </div>
             <div>
               <label className="block text-gray-700 mb-1">Category</label>

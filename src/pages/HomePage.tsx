@@ -143,7 +143,7 @@ const HomePage = () => {
                   {t('homepage.aboutText2')}
                 </p>
                 <div className="text-2xl font-bold text-gradient mb-6">
-                 High Quality. Guarantee. Excellent Local Manufacturer
+                 {t('homepage.aboutSlogan2')}
                 </div>
                 <div className="grid grid-cols-3 gap-6">
                   <div className="text-center group">
@@ -180,9 +180,9 @@ const HomePage = () => {
         <div className="container-custom px-4">
           <AnimatedSection animation="fade-in">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">{t('homepage.servicesSectionTitle')}</h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                We offer a wide range of services to meet the needs of our clients in the fields of manufacturing, infrastructure, and development.
+                {t('homepage.servicesSectionDesc')}
               </p>
             </div>
           </AnimatedSection>
@@ -191,43 +191,43 @@ const HomePage = () => {
             <AnimatedSection animation="scale-in" delay={0}>
               <ServiceCard
                 icon={<Hammer className="w-7 h-7 text-orange-600" />} 
-                title="Manufacturing various types of lighting poles"
-                description="High-quality manufacturing of lighting poles for urban and industrial applications."
+                title={t('homepage.service1Title')}
+                description={t('homepage.service1Desc')}
               />
             </AnimatedSection>
             <AnimatedSection animation="scale-in" delay={100}>
               <ServiceCard
                 icon={<Lightbulb className="w-7 h-7 text-orange-600" />} 
-                title="Supplying lighting systems and electrical installations"
-                description="Supplying and installing advanced lighting systems and electrical solutions."
+                title={t('homepage.service2Title')}
+                description={t('homepage.service2Desc')}
               />
             </AnimatedSection>
             <AnimatedSection animation="scale-in" delay={200}>
               <ServiceCard
                 icon={<RailSymbol className="w-7 h-7 text-orange-600" />} 
-                title="Designing and developing urban infrastructure"
-                description="Comprehensive design and development of urban infrastructure projects."
+                title={t('homepage.service3Title')}
+                description={t('homepage.service3Desc')}
               />
             </AnimatedSection>
             <AnimatedSection animation="scale-in" delay={300}>
               <ServiceCard
                 icon={<Award className="w-7 h-7 text-orange-600" />} 
-                title="Executing general contracting projects"
-                description="Professional execution of general contracting and construction projects."
+                title={t('homepage.service4Title')}
+                description={t('homepage.service4Desc')}
               />
             </AnimatedSection>
             <AnimatedSection animation="scale-in" delay={400}>
               <ServiceCard
                 icon={<Home className="w-7 h-7 text-orange-600" />} 
-                title="Real estate investment and development"
-                description="Investment and development in real estate for sustainable growth."
+                title={t('homepage.service5Title')}
+                description={t('homepage.service5Desc')}
               />
             </AnimatedSection>
             <AnimatedSection animation="scale-in" delay={500}>
               <ServiceCard
                 icon={<Users className="w-7 h-7 text-orange-600" />} 
-                title="Engineering consultancy for government projects"
-                description="Expert engineering consultancy for government and public sector projects."
+                title={t('homepage.service6Title')}
+                description={t('homepage.service6Desc')}
               />
             </AnimatedSection>
           </div>
@@ -241,7 +241,7 @@ const HomePage = () => {
                 icon={ArrowRight}
                 className="group"
               >
-                Learn More About Our Services
+                {t('homepage.servicesSectionButton')}
               </Button>
             </div>
           </AnimatedSection>
@@ -253,9 +253,9 @@ const HomePage = () => {
         <div className="container-custom px-4">
           <AnimatedSection animation="fade-in">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Do Clients Choose Us?</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">{t('homepage.whyChooseTitle')}</h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Discover the key reasons our clients trust and choose us for their projects.
+                {t('homepage.whyChooseDesc')}
               </p>
             </div>
           </AnimatedSection>
@@ -263,36 +263,36 @@ const HomePage = () => {
             <AnimatedSection animation="scale-in" delay={0}>
               <div className="bg-white rounded-xl shadow-md border border-gray-100 p-6 flex flex-col items-center text-center justify-center min-h-[320px]">
                 <Award className="w-10 h-10 text-orange-600 mb-4" />
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">In-house manufacturing with international standards</h3>
-                <p className="text-gray-600">We manufacture all products in-house, ensuring quality and compliance with global standards.</p>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('homepage.whyChoose1Title')}</h3>
+                <p className="text-gray-600">{t('homepage.whyChoose1Desc')}</p>
               </div>
             </AnimatedSection>
             <AnimatedSection animation="scale-in" delay={100}>
               <div className="bg-white rounded-xl shadow-md border border-gray-100 p-6 flex flex-col items-center text-center justify-center min-h-[320px]">
                 <Lightbulb className="w-10 h-10 text-orange-600 mb-4" />
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">From idea to execution</h3>
-                <p className="text-gray-600">We support our clients at every stage, from concept to project delivery.</p>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('homepage.whyChoose2Title')}</h3>
+                <p className="text-gray-600">{t('homepage.whyChoose2Desc')}</p>
               </div>
             </AnimatedSection>
             <AnimatedSection animation="scale-in" delay={200}>
               <div className="bg-white rounded-xl shadow-md border border-gray-100 p-6 flex flex-col items-center text-center justify-center min-h-[320px]">
                 <CheckCircle className="w-10 h-10 text-orange-600 mb-4" />
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">Trusted by government entities</h3>
-                <p className="text-gray-600">Our reputation is built on successful collaborations with government and public sector clients.</p>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('homepage.whyChoose3Title')}</h3>
+                <p className="text-gray-600">{t('homepage.whyChoose3Desc')}</p>
               </div>
             </AnimatedSection>
             <AnimatedSection animation="scale-in" delay={300}>
               <div className="bg-white rounded-xl shadow-md border border-gray-100 p-6 flex flex-col items-center text-center justify-center min-h-[320px]">
                 <MapPin className="w-10 h-10 text-orange-600 mb-4" />
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">Based in Iraq and covering all provinces</h3>
-                <p className="text-gray-600">We are proudly based in Iraq and serve clients across all provinces.</p>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('homepage.whyChoose4Title')}</h3>
+                <p className="text-gray-600">{t('homepage.whyChoose4Desc')}</p>
               </div>
             </AnimatedSection>
             <AnimatedSection animation="scale-in" delay={400}>
               <div className="bg-white rounded-xl shadow-md border border-gray-100 p-6 flex flex-col items-center text-center justify-center min-h-[320px]">
                 <Shield className="w-10 h-10 text-orange-600 mb-4" />
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">High quality and on-time execution</h3>
-                <p className="text-gray-600">We deliver high-quality results on schedule, every time.</p>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('homepage.whyChoose5Title')}</h3>
+                <p className="text-gray-600">{t('homepage.whyChoose5Desc')}</p>
               </div>
             </AnimatedSection>
           </div>
@@ -303,9 +303,9 @@ const HomePage = () => {
       <section className="py-20 bg-gray-50">
         <div className="container-custom px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Featured Projects</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">{t('homepage.featuredProjectsTitle')}</h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              A selection of our landmark lighting and infrastructure projects across Erbil, Kurdistan, Iraq.
+              {t('homepage.featuredProjectsDesc')}
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -317,7 +317,11 @@ const HomePage = () => {
               transition={{ duration: 0.7, ease: 'easeOut' }}
             >
               <div className="w-full h-48 bg-gray-100 flex items-center justify-center">
-                <img src={EmpireImg} alt="Empire World" className="w-full h-full object-cover" />
+                <picture>
+                  <source srcSet={EmpireImg.replace(/\.png$/, '.webp')} type="image/webp" />
+                  <source srcSet={EmpireImg.replace(/\.png$/, '.avif')} type="image/avif" />
+                  <img src={EmpireImg} alt="Empire World" width={400} height={200} loading="lazy" className="w-full h-full object-cover" />
+                </picture>
               </div>
               <div className="flex-1 flex flex-col items-center justify-center text-center p-6">
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">Empire World</h3>
@@ -332,7 +336,7 @@ const HomePage = () => {
               transition={{ duration: 0.7, ease: 'easeOut', delay: 0.1 }}
             >
               <div className="w-full h-48 bg-gray-100 flex items-center justify-center">
-                <img src={ferdawsImg} alt="Ferdaws City" className="w-full h-full object-cover" />
+                <img src={ferdawsImg} alt="Ferdaws City" className="w-full h-full object-cover" loading="lazy" />
               </div>
               <div className="flex-1 flex flex-col items-center justify-center text-center p-6">
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">Ferdaws City</h3>
@@ -347,7 +351,7 @@ const HomePage = () => {
               transition={{ duration: 0.7, ease: 'easeOut', delay: 0.2 }}
             >
               <div className="w-full h-48 bg-gray-100 flex items-center justify-center">
-                <img src={FutreImg} alt="Future City" className="w-full h-full object-cover" />
+                <img src={FutreImg} alt="Future City" className="w-full h-full object-cover" loading="lazy" />
               </div>
               <div className="flex-1 flex flex-col items-center justify-center text-center p-6">
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">Future City</h3>
@@ -362,7 +366,7 @@ const HomePage = () => {
               transition={{ duration: 0.7, ease: 'easeOut', delay: 0.3 }}
             >
               <div className="w-full h-48 bg-gray-100 flex items-center justify-center">
-                <img src={frenchImg} alt="French Village" className="w-full h-full object-cover" />
+                <img src={frenchImg} alt="French Village" className="w-full h-full object-cover" loading="lazy" />
               </div>
               <div className="flex-1 flex flex-col items-center justify-center text-center p-6">
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">French Village</h3>
@@ -377,7 +381,7 @@ const HomePage = () => {
               transition={{ duration: 0.7, ease: 'easeOut', delay: 0.4 }}
             >
               <div className="w-full h-48 bg-gray-100 flex items-center justify-center">
-                <img src={parkImg} alt="Park Sami Abdulrahman" className="w-full h-full object-cover" />
+                <img src={parkImg} alt="Park Sami Abdulrahman" className="w-full h-full object-cover" loading="lazy" />
               </div>
               <div className="flex-1 flex flex-col items-center justify-center text-center p-6">
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">Park Sami Abdulrahman</h3>
@@ -392,7 +396,7 @@ const HomePage = () => {
               transition={{ duration: 0.7, ease: 'easeOut', delay: 0.5 }}
             >
               <div className="w-full h-48 bg-gray-100 flex items-center justify-center">
-                <img src={ZaitonPlusImg} alt="Zaiton Plus" className="w-full h-full object-cover" />
+                <img src={ZaitonPlusImg} alt="Zaiton Plus" className="w-full h-full object-cover" loading="lazy" />
               </div>
               <div className="flex-1 flex flex-col items-center justify-center text-center p-6">
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">Zaiton Plus</h3>
