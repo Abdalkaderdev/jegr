@@ -7,6 +7,7 @@ import FAQSection from '../components/FAQSection';
 import { FaLightbulb, FaIndustry, FaBuilding, FaAward } from 'react-icons/fa';
 import interchangeImg from '../assets/Presentation - Google Chrome 7_4_2025 8_07_34 PM.png';
 import heroImg from '../assets/IMG_5985.jpeg';
+import abImg from '../assets/ab.png';
 
 const AboutPage = () => {
   const { t } = useTranslation();
@@ -132,9 +133,7 @@ const AboutPage = () => {
             <AnimatedSection animation="slide-in-right" delay={200}>
               <div className="relative image-hover-zoom rounded-lg overflow-hidden shadow-xl">
                 <picture>
-                  <source srcSet={interchangeImg.replace(/\.(png|jpeg|jpg)$/, '.webp')} type="image/webp" />
-                  <source srcSet={interchangeImg.replace(/\.(png|jpeg|jpg)$/, '.avif')} type="image/avif" />
-                  <img src={interchangeImg} alt="Aerial view of a highway interchange at night" width={800} height={600} loading="lazy" className="w-full h-full object-cover" />
+                  <img src={abImg} alt="رؤيتنا ومهمتنا - Jegr Jalal Vision and Mission" width={800} height={600} loading="lazy" className="w-full h-full object-cover border-4 border-orange-600 shadow-2xl" />
                 </picture>
               </div>
             </AnimatedSection>
